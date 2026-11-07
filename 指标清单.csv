@@ -1,0 +1,23 @@
+﻿指标,状态,文件,来源包或来源,使用边界,日期格式,非缺失观测数,首个有效日期,最后有效日期,数据文件SHA256
+ARA,作者公开原始数据,ARA.csv,member1（ly.zip）；member2两包同一 SHA-256,原论文 ARA,DDmmmYYYY,3903,01jul2004,31dec2019,bedcc843a98a7d408556d77aa25b356f3775b7ca7934a2d9cf5c8ba46f1204c3
+aia_option_proxy,真实公开数据构造的替代代理,AIA_option_proxy_替代/AIA_option_proxy.csv,member1（ly.zip）,不是原论文 AIA,DDmmmYYYY,2437,01feb2010,04oct2019,712f80e0490a1255de882eb113b2d274476ba694cb60d0ac623f63ba7776be2c
+vwret_proxy,真实公开数据构造的替代因变量,vwret_标普500替代/vwret.csv,member1（ly.zip）,标普500范围；不是论文全市场回报；单位%,DDmmmYYYY,2447,26jan2010,14oct2019,c658201edd0a8ce4dbf0cb327957db222e4884658d80f6efb37df51e91b117fa
+VIX,Cboe 真实公开数据,VIX_Cboe/VIX.csv,member2两包同一原始文件,VIX日度收盘,ISO YYYY-MM-DD,9311,1990-01-02,2026-11-06,d9884e0da5737f90e7aaa8fbb56f34db4b08d91325a449805ef8e7878deea6d9
+dADS,费城联储真实数据差分,dADS_费城联储/dADS.csv,member2两包同一原始文件,日度 ADS 一阶差分,ISO YYYY-MM-DD,24350,1960-03-02,2026-10-31,68cd698589ef6e159a84aae2eeb068923d71a9371847cd761851a8b7362aa10a
+tms,Goyal-Welch 真实月度数据,TMS_月度/TMS_monthly.csv,member2两包同一原始文件,月度；原值×100,ISO YYYY-MM-DD,1272,1920-01-01,2025-12-01,c4ff46dfea98e301e7e449820cfe93e804b437048ed9e36564a7265859233d8f
+dfy,Goyal-Welch 真实月度数据,DFY_月度/DFY_monthly.csv,member2两包同一原始文件,月度；原值×100,ISO YYYY-MM-DD,1284,1919-01-01,2025-12-01,c866411f1f15701827c6e062d2433f094838bd31123dc69e82f569ea931dec0e
+BW_SENT,Baker-Wurgler 真实月度数据,BW_SENT_月度/BW_SENT_monthly.csv,member2两包同一原始文件,月度原值,ISO YYYY-MM-DD,726,1965-07-01,2025-12-01,002d5fb2249493cac144fe8ddba1f73a022b0c30d1fa1d2b3243036d10cd21b4
+BW_SENT_ORTH,Baker-Wurgler 真实月度数据,BW_SENT_ORTH_月度/BW_SENT_ORTH_monthly.csv,member2两包同一原始文件,月度备查原值,ISO YYYY-MM-DD,725,1965-07-01,2025-12-01,11909fa1ac31b2a31d50b894542b9bcab267426773d3ebc1582307838112c1b1
+lBWx_monthly_proxy,公开数据的近似转换,lBWx_一月滞后近似/lBWx_monthly_proxy.csv,member2两包同一原始文件,SENT一月滞后；尚未日度映射,ISO YYYY-MM-DD,725,1965-08-01,2025-12-01,e3809ab53e4c1ebd3f2890cedd358f781ac59ad43102d2a734bd7cb5928071a4
+fvwret5,模拟或模拟派生,模拟数据/fvwret5_模拟/fvwret5_SIMULATED.csv,member2 项目的混合面板生成器,与vwret不构成一致的未来收益,ISO YYYY-MM-DD,3903,2004-07-01,2019-12-31,38ae4f4644c6e111ca1d636f88c78d3d3331bd330bd032484928a14e08361381
+dEPU_proxy,真实公开数据构造的替代控制变量,dEPU_proxy/dEPU_proxy.csv,member2已收集的 EPU 七日移动平均；月度源文件仅作参考,连续自然日一阶差分；不是原始日度 EPU 差分,ISO YYYY-MM-DD,15284,1985-01-02,2026-11-06,e29909438b03aadbe8889090fb739cc1b83f8e630b37ab0425cb42b51d997793
+abn_news,模拟或模拟派生,模拟数据/abn_news_模拟/abn_news_SIMULATED.csv,member2 项目的混合面板生成器,RavenPack未得,ISO YYYY-MM-DD,3903,2004-07-01,2019-12-31,307f9a78ea4e84b9119f39754901b18e583fdf34a8ab52df2e9f3fadc46e9ad6
+abnto,模拟或模拟派生,模拟数据/abnto_模拟/abnto_SIMULATED.csv,member2 项目的混合面板生成器,CRSP个股换手未得,ISO YYYY-MM-DD,3903,2004-07-01,2019-12-31,9b6e643a61a6154cca8acd9fdf19cabd19d0ed87a6b15147c1666e36441677d6
+percentspread,模拟或模拟派生,模拟数据/percentspread_模拟/percentspread_SIMULATED.csv,member2 项目的混合面板生成器,有效价差未得,ISO YYYY-MM-DD,3903,2004-07-01,2019-12-31,e68a7da52bc16d0307a3815d5b8466593ff9382ed1c2d0ce52e264cfeedf0465
+dfee,模拟或模拟派生,模拟数据/dfee_模拟/dfee_SIMULATED.csv,member2 项目的混合面板生成器,借贷费用未得；0/1占位,ISO YYYY-MM-DD,1255,2006-07-03,2011-12-30,1df0600b6a04c90b2778914785c525dedb1017351eb963f5c19887e40be3041e
+mnews26,模拟或模拟派生,模拟数据/mnews26_模拟/mnews26_SIMULATED.csv,member2 项目的混合面板生成器,真实宏观公告日未得,ISO YYYY-MM-DD,3903,2004-07-01,2019-12-31,9fa2a96d4ec6f922d741f60e93fe2c8b150eff590b545d8bf81b456f1206baea
+news26,模拟或模拟派生,模拟数据/news26_模拟/news26_SIMULATED.csv,member2 项目的混合面板生成器,真实重大新闻日未得,ISO YYYY-MM-DD,3903,2004-07-01,2019-12-31,9d121dad29384112dcb3d8e49c1224351be996955d43d887920c96308d6845c8
+retail_bhjos_vol,模拟或模拟派生,模拟数据/retail_bhjos_vol_模拟/retail_bhjos_vol_SIMULATED.csv,member2 项目的混合面板生成器,TAQ零售交易未得,ISO YYYY-MM-DD,2516,2010-01-04,2019-12-31,e971b333e71af441dcad8d86c39f5b15e77ab6047dc905e5df86dd345174c217
+retail_bhjos_vol2,模拟或模拟派生,模拟数据/retail_bhjos_vol2_模拟/retail_bhjos_vol2_SIMULATED.csv,member2 项目的混合面板生成器,TAQ零售交易未得,ISO YYYY-MM-DD,2516,2010-01-04,2019-12-31,182ddfe6991b5688fac3e5de3461ea0f2a10e379b8c23e741baecfc1585a03e2
+equityflow,模拟或模拟派生,模拟数据/equityflow_模拟/equityflow_SIMULATED.csv,member2 项目的混合面板生成器,TrimTab未得,ISO YYYY-MM-DD,3042,2004-07-01,2016-07-29,7927b524dbfd8c497fc4f2c24f2e0a04046298d106b00c2f1150d205b6b714c9
+ins_oib,模拟或模拟派生,模拟数据/ins_oib_模拟/ins_oib_SIMULATED.csv,member2 项目的混合面板生成器,TAQ非零售交易未得,ISO YYYY-MM-DD,2431,2010-02-16,2019-12-31,bd1d1efbb7135bcd6f2c22c7af5a7364c6c5fcce556522e5798ee7d11a5c82a9
