@@ -1,6 +1,6 @@
 # Market Returns 数据整理
 
-最新版：[`group3_collected_data_v7.zip`](group3_collected_data_v7.zip)。
+最新版：[`group3_collected_data_v8.zip`](group3_collected_data_v8.zip)。
 
 来源统一使用 **member1**（ly.zip 的收集者）和 **member2**（复现数据.zip 与第三组复现项目.zip 的提供者）。
 
@@ -10,8 +10,8 @@ ZIP 内直接放置 ARA.csv、各指标文件夹和说明，已去掉额外的�
 
 EPU 代理的两个源文件、计算脚本、说明和结果均在 ZIP 内的 `dEPU_proxy/` 中。所有指标数据和处理代码统一放在 ZIP 内。
 
-- ZIP 大小：4624835 字节
-- SHA-256：`1851c43c199db1d94114bc35c5653868279275aba0f8fedbe1850d1fd9239916`
+- ZIP 大小：4628544 字节
+- SHA-256：`214b4dee0ab920f9a45a36a43a9b273c63828a148c0dd1677aed161beb9b6dbf`
 
 模拟占位数据仅用于流程演示。
 
@@ -23,7 +23,7 @@ README.md
 尚未取得的数据.md
 后续数据获取与复现重点.md
 指标清单.csv
-group3_collected_data_v7.zip
+group3_collected_data_v8.zip
 ```
 
 下载 ZIP 并解压后，即可在各指标文件夹中查看源数据、处理代码与结果；ZIP 内直接放置各指标，无额外外层目录。
@@ -33,3 +33,5 @@ group3_collected_data_v7.zip
 宏观事件更新：ZIP 内新增 `mnews26/`。使用免费美联储例行FOMC声明和BLS非农、PPI历史报告日期，收集2004—2019年512条事件及2020年1月3条缓冲事件，生成3,903个交易日的窗口标记。附19份官方网页、逐条来源、下载脚本、离线汇总代码和审计表。独立模拟 mnews26 已删除；当前共22个指标，其中9个为模拟占位。4条休市公告单独列出且未自动顺延；与作者新闻组N的差异见包内说明。
 
 All News 工作材料：ZIP内 `news26_sp500_市值加权_待补数据/` 保留当期S&P500、市值加权定义，含WRDS导出字段、4份原始CSV模板、输入规范化脚本、构造代码及免费候选来源的缺口核验。仍需补齐实际历史市值、成员与财报身份映射；尚未生成真实news26，不计入已完成指标，原模拟news26保留。
+
+FMP入口测试：ZIP内All News待补目录新增 `fmp_sp500_probe.py`，仅用标准库、本地输入key，测试历史成分变动与当前名单两个接口并保存响应和年份摘要。尚未使用真实FMP账号验证权限，All News仍待补数据。
