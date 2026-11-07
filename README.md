@@ -1,13 +1,16 @@
 # Market Returns 课程复现数据整理
 
-最新版：**`group3_collected_data_v2.zip`**（原 ZIP 已移除）。
+最新版：[`group3_collected_data_v3.zip`](group3_collected_data_v3.zip)。旧版 ZIP 已移除。
 
-本包按指标整理两位同学目前已收集的数据，共 **24 个指标**。AIA 的 Cboe 指数期权成交量代理和标普500范围的 `vwret` 替代收益率已获得，分别保留在独立文件夹；它们对应的独立模拟指标文件夹和清单行已删除。其余 **12 个模拟占位指标**仍明确标注，仅供流程演示。
+共 **22 个指标**，其中 **11 个为明确标注的模拟占位指标**。AIA 期权代理、标普500范围的 vwret 替代收益率和本次新增的 dEPU_proxy 均作为已取得的替代数据保留。
 
-AIA 代理不等于论文 Bloomberg DMR AIA，标普500收益率替代不等于论文 CRSP 全市场收益。模拟 `fvwret5` 仍不由已获得的替代 `vwret` 计算，不能当作真实回归因变量。
+本次将原有两个 EPU 数据文件夹与独立模拟 dEPU 文件夹合并为 [`dEPU_proxy/`](dEPU_proxy/)。其中保存日度七日移动平均和月度 EPU 两个源文件、运行脚本、说明，以及结果 [`dEPU_proxy.csv`](dEPU_proxy/dEPU_proxy.csv)。
 
-- 下载文件：[`group3_collected_data_v2.zip`](group3_collected_data_v2.zip)
-- 大小：4511544 字节
-- SHA-256：`9c9324dbdd8efd4bf669a6970ed519cb11da84e82ef4bbc0e24f8eca5ecceca8`
+计算式：`dEPU_proxy(t) = EPU_MA7(t) - EPU_MA7(t-1)`。t-1 是前一个自然日，月度文件仅作参考，不参与计算。首日差分为空，其余 15,284 个差分值已逐行核验。该代理是平滑指数的日差分，不能视作原始日度 EPU 的变化。
 
-解压后先读 `README.md`、`指标清单.csv` 和 `尚未取得的数据.md`。
+压缩包已更新指标清单、说明和文件校验表。共享生成器内部的模拟变量只用于重建其他历史模拟列；包内未运行或更新论文回归。
+
+- 大小：4351458 字节
+- SHA-256：`1cbdcfd29e80f562047ec2ee8add028745814c5edef398876f70b2485b662f9e`
+
+解压后先读 README.md、指标清单.csv 和尚未取得的数据.md。
