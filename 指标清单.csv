@@ -9,7 +9,7 @@ dfy,Goyal-Welch 真实月度数据,DFY_月度/DFY_monthly.csv,member2两包同�
 BW_SENT,Baker-Wurgler 真实月度数据,BW_SENT_月度/BW_SENT_monthly.csv,member2两包同一原始文件,月度原值,ISO YYYY-MM-DD,726,1965-07-01,2025-12-01,002d5fb2249493cac144fe8ddba1f73a022b0c30d1fa1d2b3243036d10cd21b4
 BW_SENT_ORTH,Baker-Wurgler 真实月度数据,BW_SENT_ORTH_月度/BW_SENT_ORTH_monthly.csv,member2两包同一原始文件,月度备查原值,ISO YYYY-MM-DD,725,1965-07-01,2025-12-01,11909fa1ac31b2a31d50b894542b9bcab267426773d3ebc1582307838112c1b1
 lBWx_monthly_proxy,公开数据的近似转换,lBWx_一月滞后近似/lBWx_monthly_proxy.csv,member2两包同一原始文件,SENT一月滞后；尚未日度映射,ISO YYYY-MM-DD,725,1965-08-01,2025-12-01,e3809ab53e4c1ebd3f2890cedd358f781ac59ad43102d2a734bd7cb5928071a4
-fvwret5,模拟或模拟派生,模拟数据/fvwret5_模拟/fvwret5_SIMULATED.csv,member2 项目的混合面板生成器,与vwret不构成一致的未来收益,ISO YYYY-MM-DD,3903,2004-07-01,2019-12-31,38ae4f4644c6e111ca1d636f88c78d3d3331bd330bd032484928a14e08361381
+fvwret5,观测日收益率复合计算值（替代口径）,fvwret5/fvwret5.csv,member1 的 vwret.csv；按未来第2—6个交易日复合计算,百分数单位；2010-02-01至2019-10-04；标普500样本来源非原全市场,ISO YYYY-MM-DD,2437,2010-02-01,2019-10-04,ad096aa619b65b4c7191b28e5155af44118151f91211beaede4d54325005fb08
 dEPU_proxy,真实公开数据构造的替代控制变量,dEPU_proxy/dEPU_proxy.csv,member2已收集的 EPU 七日移动平均；月度源文件仅作参考,连续自然日一阶差分；不是原始日度 EPU 差分,ISO YYYY-MM-DD,15284,1985-01-02,2026-11-06,e29909438b03aadbe8889090fb739cc1b83f8e630b37ab0425cb42b51d997793
 abn_news,模拟或模拟派生,模拟数据/abn_news_模拟/abn_news_SIMULATED.csv,member2 项目的混合面板生成器,RavenPack未得,ISO YYYY-MM-DD,3903,2004-07-01,2019-12-31,307f9a78ea4e84b9119f39754901b18e583fdf34a8ab52df2e9f3fadc46e9ad6
 abnto,模拟或模拟派生,模拟数据/abnto_模拟/abnto_SIMULATED.csv,member2 项目的混合面板生成器,CRSP个股换手未得,ISO YYYY-MM-DD,3903,2004-07-01,2019-12-31,9b6e643a61a6154cca8acd9fdf19cabd19d0ed87a6b15147c1666e36441677d6
