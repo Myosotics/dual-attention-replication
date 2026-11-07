@@ -12,7 +12,7 @@ lBWx_monthly_proxy,公开数据的近似转换,lBWx_一月滞后近似/lBWx_mont
 fvwret5,观测日收益率复合计算值（替代口径）,fvwret5/fvwret5.csv,member1 的 vwret.csv；按未来第2—6个交易日复合计算,百分数单位；2010-02-01至2019-10-04；标普500样本来源非原全市场,ISO YYYY-MM-DD,2437,2010-02-01,2019-10-04,ad096aa619b65b4c7191b28e5155af44118151f91211beaede4d54325005fb08
 dEPU_proxy,真实公开数据构造的替代控制变量,dEPU_proxy/dEPU_proxy.csv,member2已收集的 EPU 七日移动平均；月度源文件仅作参考,连续自然日一阶差分；不是原始日度 EPU 差分,ISO YYYY-MM-DD,15284,1985-01-02,2026-11-06,e29909438b03aadbe8889090fb739cc1b83f8e630b37ab0425cb42b51d997793
 abn_news,模拟或模拟派生,模拟数据/abn_news_模拟/abn_news_SIMULATED.csv,member2 项目的混合面板生成器,RavenPack未得,ISO YYYY-MM-DD,3903,2004-07-01,2019-12-31,307f9a78ea4e84b9119f39754901b18e583fdf34a8ab52df2e9f3fadc46e9ad6
-abnto,模拟或模拟派生,模拟数据/abnto_模拟/abnto_SIMULATED.csv,member2 项目的混合面板生成器,CRSP个股换手未得,ISO YYYY-MM-DD,3903,2004-07-01,2019-12-31,9b6e643a61a6154cca8acd9fdf19cabd19d0ed87a6b15147c1666e36441677d6
+AbnTurn_volume_proxy,真实公开数据构造的替代代理,AbnTurn_volume_proxy/AbnTurn_volume_proxy.csv,member1 复制 Yahoo Finance SPY 日行情接口响应；原始 JSON 同目录,SPY异常对数成交量；252日历史均值；不是个股市值加权异常换手率；映射控制项abnto,ISO YYYY-MM-DD,3903,2004-07-01,2019-12-31,97f14d47f99f65a49f9aca188743238b52bba247a60ce78d09fbf44f4a788c44
 percentspread,模拟或模拟派生,模拟数据/percentspread_模拟/percentspread_SIMULATED.csv,member2 项目的混合面板生成器,有效价差未得,ISO YYYY-MM-DD,3903,2004-07-01,2019-12-31,e68a7da52bc16d0307a3815d5b8466593ff9382ed1c2d0ce52e264cfeedf0465
 dfee,模拟或模拟派生,模拟数据/dfee_模拟/dfee_SIMULATED.csv,member2 项目的混合面板生成器,借贷费用未得；0/1占位,ISO YYYY-MM-DD,1255,2006-07-03,2011-12-30,1df0600b6a04c90b2778914785c525dedb1017351eb963f5c19887e40be3041e
 mnews26,免费官方发布日期重建（非作者原始面板）,mnews26/mnews26.csv,美联储例行FOMC声明日期；BLS非农及PPI历史报告日期,未来第2—6个交易日事件并集；非交易日公告不自动顺延；与原表N不同,ISO YYYY-MM-DD,3903,2004-07-01,2019-12-31,3889645b9214e4877c7a1e18c3fc166a7553743805091f052f418a1db630d01d
