@@ -1,0 +1,119 @@
+{
+  "source": "group3_collected_data_v14.zip",
+  "window": [
+    "2010-02-01",
+    "2019-10-04"
+  ],
+  "target_rows": 2437,
+  "vix_cutoff_ARA": 15.57,
+  "vix_cutoff_AIA": 15.53,
+  "ted_cutoff": 0.32,
+  "monthly_rule": "TMS/DFY previous calendar month; BW existing one-month lag; asof max40 calendar days. Publication vintages unverified.",
+  "return_unit": "percent; no second x100",
+  "controls": [
+    "BW",
+    "TMS",
+    "DFY",
+    "dADS",
+    "dEPU",
+    "VIX_L0",
+    "VIX_L1",
+    "VIX_L2",
+    "VIX_L3",
+    "VIX_L4",
+    "AbnTurn_L0",
+    "AbnTurn_L1",
+    "AbnTurn_L2",
+    "AbnTurn_L3",
+    "AbnTurn_L4",
+    "MktRet_L0",
+    "MktRet_L1",
+    "MktRet_L2",
+    "MktRet_L3",
+    "MktRet_L4"
+  ],
+  "omitted": [
+    "AbnNews",
+    "Effective Spread",
+    "Short Sale Fee",
+    "All News",
+    "Appendix 3/4"
+  ],
+  "actual_environment": {
+    "python": "3.12.14",
+    "numpy": "2.3.5",
+    "pandas": "2.2.3",
+    "statsmodels": "0.15.0",
+    "scipy": "1.17.0"
+  },
+  "bootstrap": "IID pairs bootstrap; fixed state labels and thresholds; seed20261108; SE is coefficient SD; no parameter tuning",
+  "hodrick": "Not estimated. Original R hardcodes 23 regressors and uses an ambiguous 4-lag sum for H=6; do not relabel HAC as Hodrick.",
+  "inputs": [
+    {
+      "file": "ARA.csv",
+      "sha256": "bedcc843a98a7d408556d77aa25b356f3775b7ca7934a2d9cf5c8ba46f1204c3",
+      "bytes": 85151
+    },
+    {
+      "file": "AIA_option_proxy_替代/AIA_option_proxy.csv",
+      "sha256": "712f80e0490a1255de882eb113b2d274476ba694cb60d0ac623f63ba7776be2c",
+      "bytes": 54603
+    },
+    {
+      "file": "vwret_标普500替代/vwret.csv",
+      "sha256": "c658201edd0a8ce4dbf0cb327957db222e4884658d80f6efb37df51e91b117fa",
+      "bytes": 42999
+    },
+    {
+      "file": "VIX_Cboe/VIX.csv",
+      "sha256": "d9884e0da5737f90e7aaa8fbb56f34db4b08d91325a449805ef8e7878deea6d9",
+      "bytes": 204784
+    },
+    {
+      "file": "AbnTurn_volume_proxy/AbnTurn_volume_proxy.csv",
+      "sha256": "97f14d47f99f65a49f9aca188743238b52bba247a60ce78d09fbf44f4a788c44",
+      "bytes": 107429
+    },
+    {
+      "file": "dADS_费城联储/dADS.csv",
+      "sha256": "68cd698589ef6e159a84aae2eeb068923d71a9371847cd761851a8b7362aa10a",
+      "bytes": 703482
+    },
+    {
+      "file": "dEPU_proxy/dEPU_proxy.csv",
+      "sha256": "e29909438b03aadbe8889090fb739cc1b83f8e630b37ab0425cb42b51d997793",
+      "bytes": 271615
+    },
+    {
+      "file": "TMS_月度/TMS_monthly.csv",
+      "sha256": "c4ff46dfea98e301e7e449820cfe93e804b437048ed9e36564a7265859233d8f",
+      "bytes": 21644
+    },
+    {
+      "file": "DFY_月度/DFY_monthly.csv",
+      "sha256": "c866411f1f15701827c6e062d2433f094838bd31123dc69e82f569ea931dec0e",
+      "bytes": 21679
+    },
+    {
+      "file": "lBWx_一月滞后近似/lBWx_monthly_proxy.csv",
+      "sha256": "e3809ab53e4c1ebd3f2890cedd358f781ac59ad43102d2a734bd7cb5928071a4",
+      "bytes": 19803
+    },
+    {
+      "file": "mnews26/mnews26.csv",
+      "sha256": "3889645b9214e4877c7a1e18c3fc166a7553743805091f052f418a1db630d01d",
+      "bytes": 54656
+    },
+    {
+      "file": "funding_stress_state/funding_stress_state.csv",
+      "sha256": "2f8a5afd4d175fec6303c201f59c37126f25ff18cf4a1038a6291de8cfa8eabb",
+      "bytes": 159635
+    },
+    {
+      "file": "fvwret5/fvwret5.csv",
+      "sha256": "ad096aa619b65b4c7191b28e5155af44118151f91211beaede4d54325005fb08",
+      "bytes": 66784
+    }
+  ],
+  "bootstrap_reps": 0
+}

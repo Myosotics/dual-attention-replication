@@ -1,0 +1,9 @@
+﻿,Macro News | Yes (1),Macro News | No (2),Macro News | (1) − (2)
+Coefficient,0.280,0.209,0.071
+White HC1 t-stat,[1.35],[1.08],[0.25]
+Boot t-stat,[1.36],[1.06],[0.25]
+Hodrick t-stat (not estimated),—,—,—
+NW30 t-stat (supplement),[1.21],[0.82],[0.22]
+1 std. mag. (bps),9.20,7.72,
+N,1324,1113,
+adj. R²,0.022,0.045,

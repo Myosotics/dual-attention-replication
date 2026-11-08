@@ -1,0 +1,9 @@
+﻿,High / Yes,Low / No,Difference
+Coefficient,-0.370,-1.317,0.947
+White HC1 t-stat,[-0.22],[-1.22],[0.47]
+Boot t-stat,[-0.22],[-1.22],[0.47]
+Hodrick t-stat (not estimated),—,—,—
+NW30 t-stat (supplement),[-0.14],[-0.88],[0.28]
+1 std. mag. (bps),-2.19,-6.54,
+N,776,1600,
+adj. R²,0.036,0.027,

@@ -1,0 +1,291 @@
+<html lang="zh"><meta charset="utf-8"><style>body{font:16px Georgia,serif;margin:32px;color:#18212b}table{border-collapse:collapse;width:100%;margin:20px 0}th,td{padding:6px 9px;text-align:right;border-bottom:1px solid #ddd}th{border-top:2px solid #111}th:first-child,td:first-child{text-align:left}h1{font-size:25px}p{line-height:1.6}caption{font-weight:bold;text-align:left;padding:12px}</style><h1>Table 3 — 市场状态：VIX与TED融资压力扩展</h1><p>注意：代理数据与缩减控制模型，不是原论文原始数据复现；结果未按原文方向调整。</p><p>原有效价差与股票借贷费用分支不估计；TED另列为融资压力扩展，不是原−75.70bp的复现。</p><p>VIX阈值按各注意力可得日期的中位数，回归完整案例筛选前固定；VIX分组遵循原Stata规格，省略当期VIX但保留1—4阶滞后。TED模型包含当期VIX。</p><p>差异列是全交互回归中高组减低组的系数，允许截距和全部控制系数不同，不以两组显著性不同代替差异检验。</p><p>White为HC1；Boot为500次IID成对重抽样的系数标准差（若命令修改次数则以metadata为准），固定分组。NW30为保留交易日间隔的补充，不能称作Hodrick。</p><p>Hodrick行保留原表位置但标为未估计：原提供R代码硬编码变量数及窗口，当前未对其方法作无歧义移植；不填造该t值。</p><p>TED同时展示默认短缺口沿用与不填补版本；1标准差效应采用各组实际回归样本的注意力标准差，单位基点。</p><h2>Panel A: ARA</h2><table class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>VIX | High / Yes</th>
+      <th>VIX | Low / No</th>
+      <th>VIX | Difference</th>
+      <th>TED funding stress (extension) | High / Yes</th>
+      <th>TED funding stress (extension) | Low / No</th>
+      <th>TED funding stress (extension) | Difference</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Coefficient</th>
+      <td>-2.192</td>
+      <td>-0.692</td>
+      <td>-1.500</td>
+      <td>-0.436</td>
+      <td>-1.303</td>
+      <td>0.866</td>
+    </tr>
+    <tr>
+      <th>White HC1 t-stat</th>
+      <td>[-1.44]</td>
+      <td>[-0.54]</td>
+      <td>[-0.76]</td>
+      <td>[-0.26]</td>
+      <td>[-1.20]</td>
+      <td>[0.43]</td>
+    </tr>
+    <tr>
+      <th>Boot t-stat</th>
+      <td>[-1.44]</td>
+      <td>[-0.59]</td>
+      <td>[-0.76]</td>
+      <td>[-0.28]</td>
+      <td>[-1.23]</td>
+      <td>[0.42]</td>
+    </tr>
+    <tr>
+      <th>Hodrick t-stat (not estimated)</th>
+      <td>—</td>
+      <td>—</td>
+      <td>—</td>
+      <td>—</td>
+      <td>—</td>
+      <td>—</td>
+    </tr>
+    <tr>
+      <th>NW30 t-stat (supplement)</th>
+      <td>[-1.11]</td>
+      <td>[-0.29]</td>
+      <td>[-0.43]</td>
+      <td>[-0.17]</td>
+      <td>[-0.85]</td>
+      <td>[0.26]</td>
+    </tr>
+    <tr>
+      <th>1 std. mag. (bps)</th>
+      <td>-11.85</td>
+      <td>-3.56</td>
+      <td></td>
+      <td>-2.58</td>
+      <td>-6.52</td>
+      <td></td>
+    </tr>
+    <tr>
+      <th>N</th>
+      <td>1208</td>
+      <td>1229</td>
+      <td></td>
+      <td>796</td>
+      <td>1641</td>
+      <td></td>
+    </tr>
+    <tr>
+      <th>adj. R²</th>
+      <td>0.022</td>
+      <td>0.033</td>
+      <td></td>
+      <td>0.032</td>
+      <td>0.023</td>
+      <td></td>
+    </tr>
+  </tbody>
+</table><h2>Sensitivity ARA: TED no fill</h2><table class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>High / Yes</th>
+      <th>Low / No</th>
+      <th>Difference</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Coefficient</th>
+      <td>-0.370</td>
+      <td>-1.317</td>
+      <td>0.947</td>
+    </tr>
+    <tr>
+      <th>White HC1 t-stat</th>
+      <td>[-0.22]</td>
+      <td>[-1.22]</td>
+      <td>[0.47]</td>
+    </tr>
+    <tr>
+      <th>Boot t-stat</th>
+      <td>[-0.22]</td>
+      <td>[-1.22]</td>
+      <td>[0.47]</td>
+    </tr>
+    <tr>
+      <th>Hodrick t-stat (not estimated)</th>
+      <td>—</td>
+      <td>—</td>
+      <td>—</td>
+    </tr>
+    <tr>
+      <th>NW30 t-stat (supplement)</th>
+      <td>[-0.14]</td>
+      <td>[-0.88]</td>
+      <td>[0.28]</td>
+    </tr>
+    <tr>
+      <th>1 std. mag. (bps)</th>
+      <td>-2.19</td>
+      <td>-6.54</td>
+      <td></td>
+    </tr>
+    <tr>
+      <th>N</th>
+      <td>776</td>
+      <td>1600</td>
+      <td></td>
+    </tr>
+    <tr>
+      <th>adj. R²</th>
+      <td>0.036</td>
+      <td>0.027</td>
+      <td></td>
+    </tr>
+  </tbody>
+</table><h2>Panel B: AIA</h2><table class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>VIX | High / Yes</th>
+      <th>VIX | Low / No</th>
+      <th>VIX | Difference</th>
+      <th>TED funding stress (extension) | High / Yes</th>
+      <th>TED funding stress (extension) | Low / No</th>
+      <th>TED funding stress (extension) | Difference</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Coefficient</th>
+      <td>0.326</td>
+      <td>-0.166</td>
+      <td>0.491</td>
+      <td>0.267</td>
+      <td>0.109</td>
+      <td>0.159</td>
+    </tr>
+    <tr>
+      <th>White HC1 t-stat</th>
+      <td>[1.49]</td>
+      <td>[-1.03]</td>
+      <td>[1.81]*</td>
+      <td>[1.00]</td>
+      <td>[0.67]</td>
+      <td>[0.51]</td>
+    </tr>
+    <tr>
+      <th>Boot t-stat</th>
+      <td>[1.61]</td>
+      <td>[-1.01]</td>
+      <td>[1.88]*</td>
+      <td>[1.01]</td>
+      <td>[0.67]</td>
+      <td>[0.51]</td>
+    </tr>
+    <tr>
+      <th>Hodrick t-stat (not estimated)</th>
+      <td>—</td>
+      <td>—</td>
+      <td>—</td>
+      <td>—</td>
+      <td>—</td>
+      <td>—</td>
+    </tr>
+    <tr>
+      <th>NW30 t-stat (supplement)</th>
+      <td>[1.20]</td>
+      <td>[-0.79]</td>
+      <td>[1.43]</td>
+      <td>[0.68]</td>
+      <td>[0.52]</td>
+      <td>[0.36]</td>
+    </tr>
+    <tr>
+      <th>1 std. mag. (bps)</th>
+      <td>12.92</td>
+      <td>-4.78</td>
+      <td></td>
+      <td>8.16</td>
+      <td>3.99</td>
+      <td></td>
+    </tr>
+    <tr>
+      <th>N</th>
+      <td>1218</td>
+      <td>1219</td>
+      <td></td>
+      <td>796</td>
+      <td>1641</td>
+      <td></td>
+    </tr>
+    <tr>
+      <th>adj. R²</th>
+      <td>0.022</td>
+      <td>0.034</td>
+      <td></td>
+      <td>0.033</td>
+      <td>0.022</td>
+      <td></td>
+    </tr>
+  </tbody>
+</table><h2>Sensitivity AIA: TED no fill</h2><table class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>High / Yes</th>
+      <th>Low / No</th>
+      <th>Difference</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Coefficient</th>
+      <td>0.250</td>
+      <td>0.116</td>
+      <td>0.134</td>
+    </tr>
+    <tr>
+      <th>White HC1 t-stat</th>
+      <td>[0.93]</td>
+      <td>[0.71]</td>
+      <td>[0.43]</td>
+    </tr>
+    <tr>
+      <th>Boot t-stat</th>
+      <td>[0.93]</td>
+      <td>[0.70]</td>
+      <td>[0.43]</td>
+    </tr>
+    <tr>
+      <th>Hodrick t-stat (not estimated)</th>
+      <td>—</td>
+      <td>—</td>
+      <td>—</td>
+    </tr>
+    <tr>
+      <th>NW30 t-stat (supplement)</th>
+      <td>[0.65]</td>
+      <td>[0.56]</td>
+      <td>[0.30]</td>
+    </tr>
+    <tr>
+      <th>1 std. mag. (bps)</th>
+      <td>7.60</td>
+      <td>4.25</td>
+      <td></td>
+    </tr>
+    <tr>
+      <th>N</th>
+      <td>776</td>
+      <td>1600</td>
+      <td></td>
+    </tr>
+    <tr>
+      <th>adj. R²</th>
+      <td>0.037</td>
+      <td>0.026</td>
+      <td></td>
+    </tr>
+  </tbody>
+</table></html>
