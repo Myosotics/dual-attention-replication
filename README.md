@@ -49,11 +49,11 @@
 
 ## 程序与实际结果
 
-仓库根目录新增 [`program/`](program/README.md)，内含table2、table3、table4三个子目录的代码、Excel、Markdown、HTML及完整系数CSV。直接使用上方v14数据ZIP，无需解压；数据ZIP是整理阶段的固定输入版本，其中关于尚未回归的历史说明以本节和program中的当前结果为准。
+仓库根目录新增 [`program/`](program/README.md)，内含table2、table3、table4三个子目录，每个仅含一个独立代码文件run.py、一份面向汇报的README.md和result/中的CSV结果。直接使用上方v14数据ZIP，无需解压；数据ZIP是整理阶段的固定输入版本，其中关于尚未回归的历史说明以本节和program中的当前结果为准。
 
-- [Table 2结果](program/table2/results.md)：ARA 8列、AIA代理9列，Newey–West(30)。
-- [Table 3结果](program/table3/results.md)：VIX分组、TED扩展及其不填补敏感性。
-- [Table 4结果](program/table4/results.md)：Macro News Yes、No及差异。
+- [Table 2说明与结果](program/table2/README.md)：ARA 8列、AIA代理9列，Newey–West(30)。
+- [Table 3说明与结果](program/table3/README.md)：VIX分组、TED扩展及其不填补敏感性。
+- [Table 4说明与结果](program/table4/README.md)：Macro News Yes、No及差异。
 
 首轮结果没有复现原文显著性：Table 2 ARA第8列系数−1.3635，NW30 p=0.273；Table 4 AIA代理Yes减No差异0.0707，NW30 p=0.826。不能把代理和缩减规格的结果说成原论文完整复现。原表Hodrick行明确未估计，另列NW30补充，不混用名称。运行方法与数据对齐规则见program README。
 
