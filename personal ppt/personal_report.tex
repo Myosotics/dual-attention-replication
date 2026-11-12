@@ -89,11 +89,22 @@ Attention effect for one stock \quad $\not\Rightarrow$ \quad predictable market 
 \end{beamercolorbox}
 \end{frame}
 
+\begin{frame}[t]{Three ways a stock-level effect can disappear}
+\K{A market result requires more than many firm-level results}
+\tri{plainbox}{Idiosyncratic shocks}{Firm-specific attention can average out.}
+    {plainbox}{Small-stock concentration}{A strong effect on small firms can carry little value-weighted impact.}
+    {plainbox}{Asynchronous timing}{Reversal in one stock can coincide with fresh pressure in another.}
+\gap
+\begin{beamercolorbox}[wd=\linewidth,sep=10pt,rounded=true]{tealbox}
+\textbf{Design implication:} Aggregate attention from individual firms, then test market returns directly.
+\end{beamercolorbox}
+\end{frame}
+
 % 04
 \begin{frame}[t]{Attention is a scarce resource}
 \K{The same word can describe different choices}
 \pair{rosebox}{Attention captured by salience}{A striking price move or headline can pull an investor toward a stock.}
-     {tealbox}{Deliberate allocation}{An investor can devote research capacity to an anticipated information event.}
+     {tealbox}{Deliberate allocation}{An investor can devote scarce research capacity to an anticipated event.}
 \gap
 \numtable{\begin{tabularx}{\linewidth}{lXX}\toprule
  & Likely behavior & Return implication\\\midrule
@@ -152,9 +163,9 @@ Institutional & Read and analyze before an event & News resolution may earn a pr
 \end{tikzpicture}
 \end{center}
 \gap
-\pair{tealbox}{Key condition}{Ahead of major news, attention is more likely to reflect information processing.}
+\pair{tealbox}{Key condition}{Ahead of major news, attention may signal that an event matters to many stocks.}
      {plainbox}{Full sample}{Without an event condition, the positive association can be diluted.}
-\take{For institutions, timing may matter more than the unconditional average.}
+\take{The conditional premium can reflect risk-premium realization or resolution of uncertainty.}
 \end{frame}
 
 % 09
@@ -175,12 +186,22 @@ The core tables ask, in order: \textbf{Does it predict? When is it stronger? Wha
 % 10
 \begin{frame}[t]{Sample and data: from stocks to the market}
 \K{The published study's common framework}
-\pair{plainbox}{Stock universe}{US common stocks; daily firm attention is aligned with market value and stock data.}
+\pair{plainbox}{Stock universe}{US common shares on NYSE, AMEX, NASDAQ, and NYSE Arca, aligned with firm market value.}
      {plainbox}{Coverage}{ARA: July 2004--December 2019.\par AIA: available from February 2010.}
 \gap
 \tri{rosebox}{Retail input}{Google search volume}
     {tealbox}{Institutional input}{Bloomberg readership}
     {goldbox}{Market return}{CRSP value-weighted index}
+\end{frame}
+
+\begin{frame}[t]{Sample construction matters for the market test}
+\K{The paper does not use a current index membership list}
+\pair{plainbox}{Eligibility}{CRSP common-share codes 10 and 11; stocks closing below \$5 are excluded.}
+     {plainbox}{Coverage shift}{Google attention begins in 2004; Bloomberg readership begins in 2010.}
+\gap
+\begin{beamercolorbox}[wd=\linewidth,sep=10pt,rounded=true]{goldbox}
+Different ARA and AIA samples affect precision and complicate direct coefficient comparisons.
+\end{beamercolorbox}
 \end{frame}
 
 % 11
@@ -198,9 +219,9 @@ $ASVI_{i,t}=\dfrac{SVI_{i,t}}{\operatorname{median}(SVI_{i,t-1:t-6m})}-1$
 % 12
 \begin{frame}[t]{Three details in constructing Google attention}
 \K{Measurement choices affect the interpretation}
-\tri{plainbox}{Ticker ambiguity}{A ticker can also be an ordinary word.}
+\tri{plainbox}{Ticker ambiguity}{Generic tickers are manually screened.}
     {plainbox}{Rolling baseline}{The benchmark must use information available before day $t$.}
-    {plainbox}{Data vintages}{Google Trends values can vary across download batches.}
+    {plainbox}{Data vintages}{Daily SVI is a 0--100 relative score; vintages are cross-checked.}
 \gap
 \begin{beamercolorbox}[wd=\linewidth,sep=10pt,rounded=true]{rosebox}
 These choices determine whether aggregated searches reliably represent retail attention.
@@ -215,8 +236,8 @@ These choices determine whether aggregated searches reliably represent retail at
 $HighInstAttention_{i,t}=\mathbb{1}(DMR_{i,t}\geq 3)$
 \end{beamercolorbox}
 \gap
-\pair{plainbox}{DMR}{The highest daily Bloomberg readership rank for a stock.}
-     {plainbox}{High attention}{A stock crossing the threshold counts as receiving high institutional attention.}
+\pair{plainbox}{DMR}{Maximum hourly Bloomberg readership, relative to the stock's prior 30 days.}
+     {plainbox}{High attention}{Scores 3 or 4 exceed roughly the 94th percentile of past activity.}
 \end{frame}
 
 % 14
@@ -245,8 +266,18 @@ AIA_t=\sum_i w_{i,t}HighInstAttention_{i,t}$
 \end{tikzpicture}
 \end{center}
 \gap
-\pair{plainbox}{Why skip a day?}{To reduce possible look-ahead bias in the attention measures.}
+\pair{plainbox}{Why skip a day?}{Calendar-day attention overlaps part of the next close-to-close return.}
      {plainbox}{Why a five-day window?}{To capture a short correction or returns around information release.}
+\end{frame}
+
+\begin{frame}[t]{The clock mismatch explains the skipped day}
+\K{The timing choice follows how the source data define a day}
+\pair{rosebox}{Google ARA}{The midnight-to-midnight GMT search window overlaps about four hours of the $t+1$ market return.}
+     {tealbox}{Bloomberg AIA}{Calendar-day readership overlaps about eight hours of the $t+1$ return.}
+\gap
+\begin{beamercolorbox}[wd=\linewidth,sep=10pt,rounded=true]{plainbox}
+Using $R_{t+2:t+6}$ keeps these overlapping hours out of the headline predictive test.
+\end{beamercolorbox}
 \end{frame}
 
 % 16
@@ -259,7 +290,7 @@ $R_{t+2:t+6}=\alpha+\beta Attention_t+\gamma X_t+\varepsilon_t$
 \gap
 \tri{plainbox}{Macro and sentiment}{BW, TMS, DFY, $\Delta ADS$, $\Delta EPU$}
     {plainbox}{News and trading}{Abnormal news volume and turnover}
-    {plainbox}{Market dynamics}{VIX, market returns, and lags}
+    {plainbox}{Market dynamics}{VIX, turnover, returns, and up to four lags}
 \end{frame}
 
 % 17
@@ -275,11 +306,23 @@ Measure & Trading days & Mean & Std. dev. & Persistence $\rho$\\\midrule
      {plainbox}{Important differences}{Their volatility, persistence, and economic meanings are distinct.}
 \end{frame}
 
+\begin{frame}[t]{Aggregation reveals a persistent common component}
+\K{Market attention outlasts the average firm-specific shock}
+\numtable{\begin{tabularx}{\linewidth}{p{4.4cm}XX}\toprule
+Autocorrelation & Aggregate measure & Average firm-level measure\\\midrule
+Retail attention & $0.77$ & $0.41$\\
+Institutional attention & $0.57$ & $0.24$\\\bottomrule
+\end{tabularx}}
+\gap
+\pair{plainbox}{Reading}{Shared shocks persist after firm-specific noise is averaged out.}
+     {plainbox}{Caution}{Attention is still less persistent than VIX and yield spreads.}
+\end{frame}
+
 % 18
 \begin{frame}[t]{Dynamics: which attention measure tends to lead?}
 \K{The paper studies lead--lag relations with a VAR}
-\pair{tealbox}{After an AIA shock}{Institutional attention rises, followed by higher retail attention.}
-     {rosebox}{After an ARA shock}{The subsequent response of institutional attention is weaker.}
+\pair{tealbox}{After an AIA shock}{ARA's cumulative response reaches about $0.219$ by day nine and remains significant.}
+     {rosebox}{After an ARA shock}{AIA's initial response is about $0.079$ and is not significant.}
 \gap
 \begin{center}\large\blue{Institutional attention} $\longrightarrow$ \red{Retail attention}\end{center}
 \take{Impulse responses describe dynamic association; they do not establish causation.}
@@ -473,7 +516,7 @@ An additional TED-spread analysis concerns \textbf{funding stress}; it is not a 
 \end{frame}
 
 % 34
-\begin{frame}[t]{Table 4: institutional attention needs an information event}
+\begin{frame}[t]{Table 4: attention before news}
 \K{A weak full-sample effect can hide a conditional relation}
 \begin{center}
 \begin{tikzpicture}[>=Latex]
@@ -488,15 +531,36 @@ An additional TED-spread analysis concerns \textbf{funding stress}; it is not a 
      {plainbox}{Comparison}{Days when that future window has no announcement.}
 \end{frame}
 
+\begin{frame}[t]{Two explanations for the AIA news-window premium}
+\K{The paper treats these channels as compatible, not mutually exclusive}
+\pair{tealbox}{Risk-premium timing}{Announcements carrying systematic information can concentrate expected equity premia near release.}
+     {plainbox}{Uncertainty resolution}{High institutional attention can signal elevated, anticipated market uncertainty before news.}
+\gap
+\begin{beamercolorbox}[wd=\linewidth,sep=10pt,rounded=true]{goldbox}
+Table 4 shows a conditional predictive association; it does not by itself identify which channel dominates.
+\end{beamercolorbox}
+\end{frame}
+
 % 35
 \begin{frame}[t]{Table 4: what counts as a news window?}
 \K{The announcement must occur between $t+2$ and $t+6$}
 \pair{tealbox}{Macro News}{FOMC meetings, nonfarm payrolls, or PPI releases.}
-     {plainbox}{All News}{Macro news or clustered earnings announcements by large firms.}
+     {plainbox}{All News}{Macro news or days in the top 5\% of announcing firms' market-capitalization share.}
 \gap
 \begin{beamercolorbox}[wd=\linewidth,sep=10pt,rounded=true]{goldbox}
 The split is based on \textbf{whether an announcement occurs}, not whether its content is good or bad.
 \end{beamercolorbox}
+\end{frame}
+
+\begin{frame}[t]{Institutional attention rises before scheduled news}
+\K{The event split is also reflected in the attention series itself}
+\numtable{\begin{tabularx}{\linewidth}{p{5.2cm}XX}\toprule
+Mean AIA & Before major news & Other days\\\midrule
+Published sample & $0.266$ & $0.241$\\\bottomrule
+\end{tabularx}}
+\gap
+\pair{tealbox}{Evidence}{The difference is statistically strong ($t=5.84$).}
+     {plainbox}{Interpretation}{Institutions allocate more attention before events that can affect many firms.}
 \end{frame}
 
 % 36
@@ -512,8 +576,18 @@ One-SD effect & $+20.82$ bp & $-3.74$ bp & &\\\bottomrule
      {plainbox}{Mechanism link}{Institutional attention may reflect deliberate analysis before news resolves uncertainty.}
 \end{frame}
 
+\begin{frame}[t]{Does AIA simply capture informed front-running?}
+\K{The paper checks returns before scheduled macro announcements}
+\pair{plainbox}{Pre-event window}{Correlations between AIA and market returns from $t-4$ to $t$ are small: $0.011$ to $0.038$.}
+     {tealbox}{Interpretation}{No notable pre-release return pattern appears; this is consistent with uncertainty being anticipated.}
+\gap
+\begin{beamercolorbox}[wd=\linewidth,sep=10pt,rounded=true]{goldbox}
+The check narrows one alternative explanation, but it is not a complete test of private information trading.
+\end{beamercolorbox}
+\end{frame}
+
 % 37
-\begin{frame}[t]{Table 4B: ARA has no analogous news-window difference}
+\begin{frame}[t]{Table 4B: ARA's news-window difference}
 \K{Published result / Macro News}
 \numtable{\begin{tabularx}{\linewidth}{p{3.8cm}cccX}\toprule
 ARA & News & No news & News minus no news & White $t$\\\midrule
@@ -550,7 +624,7 @@ Options-volume proxy & $0.280$ & $0.209$ & $0.071$ & NW30 $0.22$\\\bottomrule
 \end{frame}
 
 % 40
-\begin{frame}[t]{Table 4 replication: ARA's window difference is also weak}
+\begin{frame}[t]{Replication: ARA's news-window difference}
 \K{Macro News / retail attention}
 \numtable{\begin{tabularx}{\linewidth}{p{3.8cm}cccX}\toprule
  & News & No news & News minus no news & Difference $t$\\\midrule
@@ -597,6 +671,16 @@ Buying even after bad news can create short-lived support for prices followed by
 \end{beamercolorbox}
 \end{frame}
 
+\begin{frame}[t]{Out-of-sample forecast design}
+\K{The paper moves from fitted relationships to implementable predictions}
+\tri{plainbox}{Rolling estimation}{Estimate a univariate attention regression on a 500-day window.}
+    {plainbox}{Benchmark}{Use the historical mean return from the same window.}
+    {plainbox}{Evaluation}{Compare forecast errors for the $t+2:t+6$ return.}
+\gap
+\pair{rosebox}{ARA test starts}{August 2006, after the initial training period.}
+     {tealbox}{AIA test starts}{March 2012, after Bloomberg coverage allows training.}
+\end{frame}
+
 % 44
 \begin{frame}[t]{Section 2.5: does predictability survive out of sample?}
 \K{Published Table 5}
@@ -607,6 +691,18 @@ AIA & $-0.36\%$ & Macro News $1.19\%^{*}$ & No news $-0.39\%$ & Event dependence
 \end{tabularx}}
 \gap
 \take{The out-of-sample pattern mirrors the paper's central distinction: frictions for retail, news for institutions.}
+\end{frame}
+
+\begin{frame}[t]{Does forecasting improve allocation?}
+\K{The paper adds an economic, rather than only statistical, test}
+\pair{plainbox}{Portfolio rule}{A mean--variance investor splits wealth between the market and Treasury bills using the return forecast.}
+     {plainbox}{Assumptions}{Risk aversion is 3; the reported strategy includes 50 bp transaction costs.}
+\gap
+\numtable{\begin{tabularx}{\linewidth}{p{4.5cm}XX}\toprule
+Annual certainty-equivalent gain & Full sample & Strongest relevant state\\\midrule
+ARA & $2.26\%$ & High VIX $2.76\%$\\
+AIA & $-0.74\%$ & Macro News $1.83\%$\\\bottomrule
+\end{tabularx}}
 \end{frame}
 
 % 45
@@ -620,6 +716,36 @@ AIA & $-0.36\%$ & Macro News $1.19\%^{*}$ & No news $-0.39\%$ & Event dependence
      {tealbox}{AIA around news}{The conditional coefficient remains positive in most checks.}
 \end{frame}
 
+\begin{frame}[t]{Alternative aggregation: what if mega-caps dominate?}
+\K{Published Table 6, Panel B}
+\pair{plainbox}{Reweighting}{Use capped market-value weights, equal weights, principal components, or partial least squares.}
+     {tealbox}{Result}{PLS attention is stronger: ARA has OOS $R^2=2.14\%$; AIA in All News windows has $R^2=1.36\%$.}
+\gap
+\begin{beamercolorbox}[wd=\linewidth,sep=10pt,rounded=true]{goldbox}
+The main effects survive substantial reductions in mega-cap weight; they are not driven by a few giant firms.
+\end{beamercolorbox}
+\end{frame}
+
+\begin{frame}[t]{Why bottom-up attention beats top-down proxies}
+\K{Published Table 6, Panel C}
+\pair{rosebox}{Retail}{Searches for market-index terms do not predict returns reliably out of sample. Retail investors often hold and trade individual stocks.}
+     {tealbox}{Institutional}{Readership of SPY alone is weaker than the share of individual stocks receiving high Bloomberg attention.}
+\gap
+\begin{beamercolorbox}[wd=\linewidth,sep=10pt,rounded=true]{plainbox}
+Bottom-up AIA also signals how broadly an upcoming event matters across the stock universe.
+\end{beamercolorbox}
+\end{frame}
+
+\begin{frame}[t]{Cross-sectional design: test exposure to each channel}
+\K{Published Table 7 asks where market-level predictability should be strongest}
+\pair{rosebox}{Liquidity portfolios}{Sort stocks by past-month Amihud illiquidity; compare the most liquid and least liquid quintiles.}
+     {tealbox}{Beta portfolios}{Estimate CAPM beta from rolling monthly returns; compare low- and high-beta quintiles around news.}
+\gap
+\begin{beamercolorbox}[wd=\linewidth,sep=10pt,rounded=true]{goldbox}
+These sorts test price-impact sensitivity for ARA and systematic-risk exposure for AIA.
+\end{beamercolorbox}
+\end{frame}
+
 % 46
 \begin{frame}[t]{Section 2.7: which portfolios bear more of the effect?}
 \K{Published Table 7}
@@ -631,6 +757,16 @@ The cross-section connects the two channels to \textbf{liquidity exposure} and \
 \end{beamercolorbox}
 \end{frame}
 
+\begin{frame}[t]{Distraction instrument: what variation is used?}
+\K{The paper seeks attention shocks unrelated to stock fundamentals}
+\pair{rosebox}{Construct Dist}{Take the top 10\% of news-pressure days within each year, based on sensational broadcast-news coverage.}
+     {plainbox}{Restrict the sample}{Exclude scheduled macro news, extreme market moves, and the crisis period to limit direct market-news channels.}
+\gap
+\begin{beamercolorbox}[wd=\linewidth,sep=10pt,rounded=true]{goldbox}
+The identifying assumption is that these distractions affect future returns through retail attention rather than another channel.
+\end{beamercolorbox}
+\end{frame}
+
 % 47
 \begin{frame}[t]{Section 3.1: news distraction as an attention shock}
 \K{Published Table 8}
@@ -639,6 +775,16 @@ The cross-section connects the two channels to \textbf{liquidity exposure} and \
 \gap
 \begin{beamercolorbox}[wd=\linewidth,sep=10pt,rounded=true]{goldbox}
 The instrument is weak for AIA ($F=0.687$), so it offers no strong causal evidence for the institutional channel.
+\end{beamercolorbox}
+\end{frame}
+
+\begin{frame}[t]{The clustered-earnings puzzle comes before the release}
+\K{Why is an after-hours announcement associated with an earlier market premium?}
+\pair{plainbox}{Event definition}{In January, April, July, and October, identify the four days with the greatest announcing-firm market capitalization.}
+     {rosebox}{Timing puzzle}{For clustered after-hours releases, the market earns about 17.16 bp on the event day, before the news arrives.}
+\gap
+\begin{beamercolorbox}[wd=\linewidth,sep=10pt,rounded=true]{tealbox}
+Split these days by ARA: if retail buying pressure matters, the early premium should be concentrated on high-ARA days.
 \end{beamercolorbox}
 \end{frame}
 
