@@ -1,10 +1,8 @@
 \documentclass[aspectratio=169,10pt]{beamer}
 \usepackage{fontspec,amsmath,amssymb,booktabs,array,tabularx,tikz}
 \usetikzlibrary{arrows.meta,positioning,calc}
-\setsansfont{Noto Sans CJK SC}
-\setmainfont{Noto Sans CJK SC}
-\XeTeXlinebreaklocale "zh"
-\XeTeXlinebreakskip = 0pt plus 1pt
+\setsansfont{Liberation Sans}
+\setmainfont{Liberation Sans}
 \definecolor{bg}{HTML}{F8F6F1}
 \definecolor{ink}{HTML}{263339}
 \definecolor{muted}{HTML}{65747A}
@@ -32,23 +30,23 @@
   \vspace{.10cm}\hspace{.70cm}{\color{rule}\rule{14.55cm}{.6pt}}\par\vspace{.08cm}}
 \setbeamertemplate{footline}{}
 \newcommand{\K}[1]{{\color{teal}\bfseries\small #1}\par\vspace{.16cm}}
-\newcommand{\take}[1]{\vspace{.21cm}\begin{beamercolorbox}[wd=\linewidth,sep=7pt,rounded=true]{goldbox}\textbf{要点}\quad #1\end{beamercolorbox}}
+\newcommand{\take}[1]{\vspace{.21cm}\begin{beamercolorbox}[wd=\linewidth,sep=7pt,rounded=true]{goldbox}\textbf{Takeaway}\quad #1\end{beamercolorbox}}
 \newcommand{\boxcontent}[3]{\begin{beamercolorbox}[wd=\linewidth,sep=8pt,rounded=true]{#1}{\bfseries\large #2}\par\vspace{.10cm}{\small #3}\end{beamercolorbox}}
 \newcommand{\pair}[6]{\begin{columns}[T,onlytextwidth]\column{.49\textwidth}\boxcontent{#1}{#2}{#3}\column{.49\textwidth}\boxcontent{#4}{#5}{#6}\end{columns}}
 \newcommand{\tri}[9]{\begin{columns}[T,onlytextwidth]\column{.32\textwidth}\boxcontent{#1}{#2}{#3}\column{.32\textwidth}\boxcontent{#4}{#5}{#6}\column{.32\textwidth}\boxcontent{#7}{#8}{#9}\end{columns}}
 \newcommand{\red}[1]{{\color{rose}\bfseries #1}}
 \newcommand{\blue}[1]{{\color{teal}\bfseries #1}}
-\newcommand{\golden}[1]{{\color{gold}\bfseries #1}}
 \newcommand{\gap}{\vspace{.18cm}}
 \newcommand{\numtable}[1]{{\small\renewcommand{\arraystretch}{1.20}#1}}
+\newcolumntype{Y}{>{\raggedright\arraybackslash}X}
 \begin{document}
 
 % 01
 \begin{frame}[plain]
 \vspace{.70cm}
-{\color{teal}\small\bfseries PERSONAL PRESENTATION \quad / \quad RESEARCH LOGIC + PARTIAL REPLICATION}\par
+{\color{teal}\small\bfseries PAPER ANALYSIS \quad / \quad PARTIAL REPLICATION}\par
 \vspace{.55cm}
-{\fontsize{31}{41}\selectfont\bfseries 两种注意力，\par 市场收益的两条路径}\par
+{\fontsize{31}{41}\selectfont\bfseries Two Types of Attention,\par Two Paths to Market Returns}\par
 \vspace{.34cm}
 {\Large\color{muted}Market Returns and a Tale of Two Types of Attention}\par
 \vspace{.68cm}
@@ -57,175 +55,173 @@
 \fill[teal] (1.27,0) rectangle (2.42,.09);
 \end{tikzpicture}\par
 \vspace{.34cm}
-{\large 论文主线与 Table 2–4 部分复现}\par
+{\large Research logic and a partial replication of Tables 2--4}\par
 \vfill
-{\small\color{muted}Da, Hua, Hung \& Peng \quad | \quad 个人汇报}\par
+{\small\color{muted}Da, Hua, Hung \& Peng}\par
 \end{frame}
 
 % 02
-\begin{frame}[t]{整场汇报：一条问题链}
-\K{关注度如何从个股走向整个市场？}
-\tri{plainbox}{01 机制}{散户买盘压力\par 机构信息处理}
-    {plainbox}{02 测量}{个股注意力\par 市值加权}
-    {plainbox}{03 检验}{未来收益\par 状态与公告}
+\begin{frame}[t]{The presentation follows one chain of questions}
+\K{How can attention to individual stocks affect the whole market?}
+\tri{plainbox}{01 Mechanism}{Retail buying pressure versus institutional information processing.}
+    {plainbox}{02 Measurement}{Firm-level attention aggregated with market-value weights.}
+    {plainbox}{03 Tests}{Future returns, market states, and announcement windows.}
 \gap
 \begin{center}
 \begin{tikzpicture}[>=Latex,node distance=1.45cm]
-\node[draw=rule,fill=white,rounded corners,minimum width=3cm,minimum height=.75cm] (a) {Table 2 基准};
-\node[draw=rule,fill=white,rounded corners,minimum width=3cm,minimum height=.75cm,right=of a] (b) {Table 3 市场状态};
-\node[draw=rule,fill=white,rounded corners,minimum width=3cm,minimum height=.75cm,right=of b] (c) {Table 4 新闻窗口};
+\node[draw=rule,fill=white,rounded corners,minimum width=3cm,minimum height=.75cm] (a) {Table 2: baseline};
+\node[draw=rule,fill=white,rounded corners,minimum width=3cm,minimum height=.75cm,right=of a] (b) {Table 3: states};
+\node[draw=rule,fill=white,rounded corners,minimum width=3cm,minimum height=.75cm,right=of b] (c) {Table 4: news};
 \draw[->,thick,teal] (a)--(b);\draw[->,thick,teal] (b)--(c);
 \end{tikzpicture}
 \end{center}
-\take{本组只复现 Table 2–4 的可得部分；后续论文结果用于完成研究逻辑。}
 \end{frame}
 
 % 03
-\begin{frame}[t]{从个股效应到市场效应：为什么是个问题？}
-\K{微观证据不能直接外推到大盘}
-\pair{rosebox}{个股层面}{注意力提高可改变某只股票的买卖与定价。}
-     {tealbox}{市场层面}{不同股票的冲击可能错位、抵消，市值权重也改变贡献。}
+\begin{frame}[t]{The aggregation problem}
+\K{Firm-level evidence does not automatically imply market predictability}
+\pair{rosebox}{At the stock level}{Attention can shift demand and prices for an individual stock.}
+     {tealbox}{At the market level}{Effects across stocks may arrive at different times, offset one another, or receive different value weights.}
 \gap
 \begin{beamercolorbox}[wd=\linewidth,sep=10pt,rounded=true]{plainbox}
 \centering\large
-个股异常关注 \quad $\not\Rightarrow$ \quad 市场整体可预测
+Attention effect for one stock \quad $\not\Rightarrow$ \quad predictable market return
 \end{beamercolorbox}
-\take{论文要寻找的是注意力中共同的、能传递到市场收益的成分。}
 \end{frame}
 
 % 04
-\begin{frame}[t]{注意力是一种稀缺资源}
-\K{同样是“关注”，触发方式可能不同}
-\pair{rosebox}{显著性吸引}{醒目的市场变化或新闻让投资者被动注意到某些股票。}
-     {tealbox}{有计划的配置}{投资者主动把信息处理能力放到预期重要的事件上。}
+\begin{frame}[t]{Attention is a scarce resource}
+\K{The same word can describe different choices}
+\pair{rosebox}{Attention captured by salience}{A striking price move or headline can pull an investor toward a stock.}
+     {tealbox}{Deliberate allocation}{An investor can devote research capacity to an anticipated information event.}
 \gap
 \numtable{\begin{tabularx}{\linewidth}{lXX}\toprule
- & 可能行为 & 回报含义\\\midrule
-散户 & 看到后下单，买入占优 & 短期压力可能反转\\
-机构 & 公告前阅读与分析 & 信息揭示后可能有溢价\\\bottomrule
+ & Likely behavior & Return implication\\\midrule
+Retail & Notice, then buy; buying is more attention-sensitive & Temporary pressure may reverse\\
+Institutional & Read and analyze before an event & News resolution may earn a premium\\\bottomrule
 \end{tabularx}}
 \end{frame}
 
 % 05
-\begin{frame}[t]{散户路径①：为什么关注会带来净买盘？}
-\K{注意力影响买卖决策的两侧}
-\pair{rosebox}{买入时}{候选股票很多；被注意到的股票更可能进入选择集。}
-     {plainbox}{卖出时}{投资者通常从已有持仓中选择；注意力筛选作用较小。}
+\begin{frame}[t]{Retail channel I: why attention may generate net buying}
+\K{Attention enters the two sides of a trade differently}
+\pair{rosebox}{Buying}{The choice set is large; noticed stocks are more likely to become candidates.}
+     {plainbox}{Selling}{Investors usually choose from stocks already held; attention has a smaller screening role.}
 \gap
-\begin{center}\Large\red{更多关注} $\longrightarrow$ \red{相对更多买入}\end{center}
-\take{这是一条行为假说：关注先影响需求，再可能影响价格。}
+\begin{center}\Large\red{More attention} $\longrightarrow$ \red{relatively more buying}\end{center}
+\take{This is a behavioral hypothesis: attention affects demand before it affects price.}
 \end{frame}
 
 % 06
-\begin{frame}[t]{散户路径②：价格压力如何变成回落？}
-\K{当买盘没有带来等量基本面信息}
+\begin{frame}[t]{Retail channel II: from buying pressure to reversal}
+\K{Suppose buying conveys little new fundamental information}
 \begin{center}
 \begin{tikzpicture}[>=Latex,every node/.style={rounded corners,draw=rule,fill=white,minimum height=.9cm,align=center}]
-\node (a) at (0,0) {关注上升};
-\node (b) at (3.4,0) {净买入};
-\node (c) at (6.8,0) {短期价格上推};
-\node (d) at (10.2,0) {随后修正};
+\node (a) at (0,0) {More attention};
+\node (b) at (3.4,0) {Net buying};
+\node (c) at (6.8,0) {Price pressure};
+\node (d) at (10.2,0) {Correction};
 \draw[->,thick,rose] (a)--(b);\draw[->,thick,rose] (b)--(c);\draw[->,thick,rose] (c)--(d);
 \end{tikzpicture}
 \end{center}
 \gap
-\pair{plainbox}{当日}{买盘使价格偏离基本面，收益可能为正。}
-     {rosebox}{未来一周}{价格压力消退，后续收益可能转负。}
+\pair{plainbox}{On the attention day}{Buying can push prices above fundamentals.}
+     {rosebox}{Over the next week}{As pressure fades, subsequent returns may turn negative.}
 \end{frame}
 
 % 07
-\begin{frame}[t]{散户路径③：何时回落更明显？}
-\K{套利力量不足时，价格压力更难被吸收}
-\tri{rosebox}{高 VIX}{做市与流动性供给更谨慎。}
-    {rosebox}{高价差}{同样的买盘造成更大的价格冲击。}
-    {rosebox}{高借贷费用}{纠偏所需的卖空交易更昂贵。}
+\begin{frame}[t]{Retail channel III: when should reversal be stronger?}
+\K{Price pressure persists when arbitrage is difficult}
+\tri{rosebox}{High VIX}{Liquidity providers demand more compensation for risk.}
+    {rosebox}{Wide spreads}{A given order imbalance creates more price impact.}
+    {rosebox}{High lending fees}{Short-sale trades that correct prices cost more.}
 \gap
-\begin{center}\large\red{可检验预测：}这些状态下，ARA 对未来收益的负向系数更强。\end{center}
+\begin{center}\large\red{Prediction:} ARA has a more negative future-return coefficient in these states.\end{center}
 \end{frame}
 
 % 08
-\begin{frame}[t]{机构路径：关注为什么出现在重要新闻前？}
-\K{机构提前分配分析能力}
+\begin{frame}[t]{Institutional channel: why attention rises before news}
+\K{Research capacity can be allocated ahead of an event}
 \begin{center}
 \begin{tikzpicture}[>=Latex,every node/.style={rounded corners,draw=rule,fill=white,minimum height=.9cm,align=center}]
-\node (a) at (0,0) {预期重要公告};
-\node (b) at (3.5,0) {机构阅读／分析};
-\node (c) at (7.1,0) {不确定性消解};
-\node (d) at (10.6,0) {公告窗口收益};
+\node (a) at (0,0) {Expected news};
+\node (b) at (3.5,0) {Read and analyze};
+\node (c) at (7.1,0) {Uncertainty resolves};
+\node (d) at (10.6,0) {News-window return};
 \draw[->,thick,teal] (a)--(b);\draw[->,thick,teal] (b)--(c);\draw[->,thick,teal] (c)--(d);
 \end{tikzpicture}
 \end{center}
 \gap
-\pair{tealbox}{关键条件}{有重大公告时，关注更可能对应信息处理。}
-     {plainbox}{全样本}{没有事件条件，正向关系可能被稀释。}
-\take{对机构注意力，论文重点看“何时关注”，而非只看平均效应。}
+\pair{tealbox}{Key condition}{Ahead of major news, attention is more likely to reflect information processing.}
+     {plainbox}{Full sample}{Without an event condition, the positive association can be diluted.}
+\take{For institutions, timing may matter more than the unconditional average.}
 \end{frame}
 
 % 09
-\begin{frame}[t]{两种注意力：可检验预测}
-\K{机制不同，检验也要分开}
+\begin{frame}[t]{Two attention measures, two testable predictions}
+\K{Different mechanisms require different tests}
 \numtable{\begin{tabularx}{\linewidth}{p{3.1cm}XX}\toprule
- & \red{散户 ARA} & \blue{机构 AIA}\\\midrule
-基准预测 & 未来一周收益偏低 & 全样本未必明显\\
-条件变化 & 高摩擦状态更负 & 重大新闻窗口更正\\
-潜在机制 & 买盘压力后修正 & 信息处理与不确定性消解\\\bottomrule
+ & \red{Retail ARA} & \blue{Institutional AIA}\\\midrule
+Baseline & Lower return over the following week & Weak unconditional relation\\
+Conditional effect & More negative when market frictions rise & More positive before major news\\
+Interpretation & Buying pressure followed by correction & Information processing and uncertainty resolution\\\bottomrule
 \end{tabularx}}
 \gap
 \begin{beamercolorbox}[wd=\linewidth,sep=9pt,rounded=true]{plainbox}
-后面的三张核心表，依次回答：\textbf{是否有预测力？何时更强？与什么机制相符？}
+The core tables ask, in order: \textbf{Does it predict? When is it stronger? What mechanism fits?}
 \end{beamercolorbox}
 \end{frame}
 
 % 10
-\begin{frame}[t]{样本与数据：从个股汇总到市场}
-\K{原论文的共同框架}
-\pair{plainbox}{股票宇宙}{美国普通股；个股注意力、市值和股票数据逐日对齐。}
-     {plainbox}{时间范围}{ARA：2004 年 7 月至 2019 年 12 月。\par AIA：2010 年 2 月起可得。}
+\begin{frame}[t]{Sample and data: from stocks to the market}
+\K{The published study's common framework}
+\pair{plainbox}{Stock universe}{US common stocks; daily firm attention is aligned with market value and stock data.}
+     {plainbox}{Coverage}{ARA: July 2004--December 2019.\par AIA: available from February 2010.}
 \gap
-\tri{rosebox}{散户数据}{Google 搜索量}
-    {tealbox}{机构数据}{Bloomberg 阅读量}
-    {goldbox}{市场收益}{CRSP 市值加权}
+\tri{rosebox}{Retail input}{Google search volume}
+    {tealbox}{Institutional input}{Bloomberg readership}
+    {goldbox}{Market return}{CRSP value-weighted index}
 \end{frame}
 
 % 11
-\begin{frame}[t]{ARA：先识别个股的异常搜索}
+\begin{frame}[t]{ARA begins with abnormal firm-level search}
 \K{Google Search Volume Index / ASVI}
 \begin{beamercolorbox}[wd=\linewidth,sep=13pt,rounded=true]{rosebox}
 \centering\Large
 $ASVI_{i,t}=\dfrac{SVI_{i,t}}{\operatorname{median}(SVI_{i,t-1:t-6m})}-1$
 \end{beamercolorbox}
 \gap
-\pair{plainbox}{为何用“异常”？}{与自身过去六个月相比，剔除长期搜索规模差异。}
-     {plainbox}{实际测到什么？}{投资者对股票名称或代码的主动搜索行为。}
+\pair{plainbox}{Why abnormal?}{Compare a stock with its own six-month history, rather than with other stocks' raw search volumes.}
+     {plainbox}{What is observed?}{Active searches for a stock's name or ticker, rather than news volume or trading.}
 \end{frame}
 
 % 12
-\begin{frame}[t]{Google 搜索量：构造中的三个细节}
-\K{度量质量决定“关注”的解释}
-\tri{plainbox}{代码歧义}{股票代码可能对应普通词汇。}
-    {plainbox}{滚动基准}{参照窗口必须只用 $t$ 之前的信息。}
-    {plainbox}{数据版本}{Google Trends 不同下载批次可有修订。}
+\begin{frame}[t]{Three details in constructing Google attention}
+\K{Measurement choices affect the interpretation}
+\tri{plainbox}{Ticker ambiguity}{A ticker can also be an ordinary word.}
+    {plainbox}{Rolling baseline}{The benchmark must use information available before day $t$.}
+    {plainbox}{Data vintages}{Google Trends values can vary across download batches.}
 \gap
 \begin{beamercolorbox}[wd=\linewidth,sep=10pt,rounded=true]{rosebox}
-论文把个股异常搜索汇总到市场；这些细节决定它是否能稳定代表散户注意力。
+These choices determine whether aggregated searches reliably represent retail attention.
 \end{beamercolorbox}
 \end{frame}
 
 % 13
-\begin{frame}[t]{AIA：用 Bloomberg 阅读行为度量机构关注}
-\K{从阅读强度转为高关注指示变量}
+\begin{frame}[t]{AIA measures attention through Bloomberg readership}
+\K{Turn firm-level reading intensity into a high-attention indicator}
 \begin{beamercolorbox}[wd=\linewidth,sep=13pt,rounded=true]{tealbox}
 \centering\Large
 $HighInstAttention_{i,t}=\mathbb{1}(DMR_{i,t}\geq 3)$
 \end{beamercolorbox}
 \gap
-\pair{plainbox}{DMR}{Bloomberg 对个股的每日最高阅读量等级。}
-     {plainbox}{高关注}{超过阈值的股票，被视为当天受到较高机构关注。}
+\pair{plainbox}{DMR}{The highest daily Bloomberg readership rank for a stock.}
+     {plainbox}{High attention}{A stock crossing the threshold counts as receiving high institutional attention.}
 \end{frame}
 
 % 14
-\begin{frame}[t]{从个股到市场：同一加权逻辑}
-\K{让大公司对市场指标贡献更大}
+\begin{frame}[t]{From firms to the market: one aggregation rule}
+\K{Larger firms receive greater weight}
 \begin{beamercolorbox}[wd=\linewidth,sep=12pt,rounded=true]{plainbox}
 \centering\Large
 $ARA_t=\sum_i w_{i,t}ASVI_{i,t}
@@ -233,450 +229,442 @@ $ARA_t=\sum_i w_{i,t}ASVI_{i,t}
 AIA_t=\sum_i w_{i,t}HighInstAttention_{i,t}$
 \end{beamercolorbox}
 \gap
-\pair{rosebox}{ARA 的读法}{当日全市场股票的异常搜索强度。}
-     {tealbox}{AIA 的读法}{受到高机构关注的股票所占市值份额。}
-\take{两者来源和尺度不同；不能直接比较原始系数的绝对值。}
+\pair{rosebox}{How to read ARA}{Market-wide abnormal search intensity.}
+     {tealbox}{How to read AIA}{The value-weighted share of stocks receiving high institutional attention.}
 \end{frame}
 
 % 15
-\begin{frame}[t]{时点：关注在先，收益在后}
-\K{主预测窗口是未来第 2–6 个交易日}
+\begin{frame}[t]{Timing: attention first, returns later}
+\K{The main outcome is the cumulative return on trading days $t+2$ through $t+6$}
 \begin{center}
 \begin{tikzpicture}[>=Latex]
-\node[draw=rule,fill=white,rounded corners,minimum width=2.9cm,minimum height=.9cm] (a) at (0,0) {$t$：观察注意力};
-\node[draw=rule,fill=white,rounded corners,minimum width=2.7cm,minimum height=.9cm] (b) at (4.2,0) {$t+1$：跳过};
-\node[draw=rule,fill=white,rounded corners,minimum width=3.7cm,minimum height=.9cm] (c) at (9.0,0) {$t+2$ 至 $t+6$：累计收益};
+\node[draw=rule,fill=white,rounded corners,minimum width=2.9cm,minimum height=.9cm] (a) at (0,0) {$t$: attention};
+\node[draw=rule,fill=white,rounded corners,minimum width=2.7cm,minimum height=.9cm] (b) at (4.2,0) {$t+1$: skipped};
+\node[draw=rule,fill=white,rounded corners,minimum width=3.7cm,minimum height=.9cm] (c) at (9.0,0) {$t+2$ to $t+6$: return};
 \draw[->,thick,teal] (a)--(b);\draw[->,thick,teal] (b)--(c);
 \end{tikzpicture}
 \end{center}
 \gap
-\pair{plainbox}{为什么跳过一天？}{降低搜索与阅读指标可能产生的前视偏差。}
-     {plainbox}{为什么累计五天？}{检验短期压力与新闻消解后的回报。}
+\pair{plainbox}{Why skip a day?}{To reduce possible look-ahead bias in the attention measures.}
+     {plainbox}{Why a five-day window?}{To capture a short correction or returns around information release.}
 \end{frame}
 
 % 16
-\begin{frame}[t]{回归：注意力之外控制哪些背景？}
-\K{未来收益对当天注意力做时间序列预测}
+\begin{frame}[t]{Regression: what else is controlled?}
+\K{Predict future market returns with today's attention}
 \begin{beamercolorbox}[wd=\linewidth,sep=11pt,rounded=true]{plainbox}
 \centering\Large
 $R_{t+2:t+6}=\alpha+\beta Attention_t+\gamma X_t+\varepsilon_t$
 \end{beamercolorbox}
 \gap
-\tri{plainbox}{宏观与情绪}{BW、TMS、DFY、$\Delta ADS$、$\Delta EPU$}
-    {plainbox}{新闻与交易}{异常新闻量、异常换手率}
-    {plainbox}{市场动态}{VIX、市场收益及滞后项}
-\take{重叠的一周收益带来时间相关性；Table 2 用 Newey–West(30) 推断。}
+\tri{plainbox}{Macro and sentiment}{BW, TMS, DFY, $\Delta ADS$, $\Delta EPU$}
+    {plainbox}{News and trading}{Abnormal news volume and turnover}
+    {plainbox}{Market dynamics}{VIX, market returns, and lags}
 \end{frame}
 
 % 17
-\begin{frame}[t]{Table 1：两类注意力并不相同}
-\K{原论文的描述统计}
+\begin{frame}[t]{Table 1: the two attention measures differ}
+\K{Descriptive statistics in the published study}
 \numtable{\begin{tabularx}{\linewidth}{p{3.7cm}cccX}\toprule
-指标 & 样本日 & 均值 & 标准差 & 一阶持续性 $\rho$\\\midrule
+Measure & Trading days & Mean & Std. dev. & Persistence $\rho$\\\midrule
 \red{ARA} & 3,903 & 0.065 & 0.054 & 0.77\\
 \blue{AIA} & 2,431 & 0.254 & 0.100 & 0.57\\\bottomrule
 \end{tabularx}}
 \gap
-\pair{plainbox}{共同成分}{ARA 与 AIA 的相关系数约 0.282；并非完全独立。}
-     {plainbox}{显著区别}{两个指标的波动、持续性与经济含义不同。}
+\pair{plainbox}{Common component}{ARA and AIA have a correlation of about 0.282; they are not independent.}
+     {plainbox}{Important differences}{Their volatility, persistence, and economic meanings are distinct.}
 \end{frame}
 
 % 18
-\begin{frame}[t]{动态关系：谁先影响谁？}
-\K{论文用 VAR 研究两类注意力的先后关系}
-\pair{tealbox}{AIA 冲击之后}{机构关注上升，随后散户关注也倾向增加。}
-     {rosebox}{ARA 冲击之后}{对后续机构关注的影响较弱。}
+\begin{frame}[t]{Dynamics: which attention measure tends to lead?}
+\K{The paper studies lead--lag relations with a VAR}
+\pair{tealbox}{After an AIA shock}{Institutional attention rises, followed by higher retail attention.}
+     {rosebox}{After an ARA shock}{The subsequent response of institutional attention is weaker.}
 \gap
-\begin{center}\large\blue{机构关注} $\longrightarrow$ \red{散户关注}\quad 的先后关系更清晰\end{center}
-\take{VAR 是动态关联证据；不能单凭冲击响应推断机构导致散户关注。}
+\begin{center}\large\blue{Institutional attention} $\longrightarrow$ \red{Retail attention}\end{center}
+\take{Impulse responses describe dynamic association; they do not establish causation.}
 \end{frame}
 
 % 19
-\begin{frame}[t]{Table 2 的任务：先建立基准事实}
-\K{同一收益窗口，分别加入 ARA 或 AIA}
-\pair{rosebox}{Panel A：ARA}{逐日观察 $t+1$ 到 $t+6$，再看 $t+2$ 至 $t+6$ 累计收益。}
-     {tealbox}{Panel B：AIA}{使用同样的时间设计；再加入 ARA 检查两类关注是否彼此替代。}
+\begin{frame}[t]{Table 2: establish the baseline first}
+\K{The same return windows are tested with ARA and AIA separately}
+\pair{rosebox}{Panel A: ARA}{Track each day from $t+1$ to $t+6$, then the cumulative return from $t+2$ to $t+6$.}
+     {tealbox}{Panel B: AIA}{Use the same timing; add ARA in one specification to distinguish the two signals.}
 \gap
 \begin{beamercolorbox}[wd=\linewidth,sep=10pt,rounded=true]{plainbox}
-\centering \large 先确认\textbf{平均预测关系}，再进入状态与事件条件。
+\centering \large Establish the \textbf{average predictive relation} before conditioning on states and events.
 \end{beamercolorbox}
 \end{frame}
 
 % 20
-\begin{frame}[t]{Table 2A：散户注意力预测随后日收益}
-\K{原论文结果 / ARA}
+\begin{frame}[t]{Table 2A: ARA predicts subsequent daily returns}
+\K{Published results / retail attention}
 \numtable{\begin{tabularx}{\linewidth}{p{3.2cm}cccX}\toprule
-收益日 & $t+1$ & $t+2$ & $t+6$ & 模式\\\midrule
-ARA 系数 & $-0.814^{**}$ & $-0.902^{**}$ & $-0.805^{***}$ & 多个未来日期为负\\
-NW $t$ & $-2.24$ & $-2.30$ & $-2.64$ & 第一天之外仍存在\\\bottomrule
+Return day & $t+1$ & $t+2$ & $t+6$ & Pattern\\\midrule
+ARA coefficient & $-0.814^{**}$ & $-0.902^{**}$ & $-0.805^{***}$ & Negative on several future days\\
+NW $t$ & $-2.24$ & $-2.30$ & $-2.64$ & Persists beyond day one\\\bottomrule
 \end{tabularx}}
 \gap
-\pair{rosebox}{方向}{高 ARA 对应未来日收益偏低。}
-     {plainbox}{时间解释}{主分析聚焦从 $t+2$ 开始，避免当日测量与相邻日的时点争议。}
+\pair{rosebox}{Direction}{Higher ARA is followed by lower daily market returns.}
+     {plainbox}{Timing}{The main test starts at $t+2$ to reduce ambiguity around measurement and nearby returns.}
 \end{frame}
 
 % 21
-\begin{frame}[t]{Table 2A：未来一周的经济量级}
-\K{原论文：有控制的 $t+2:t+6$ 列}
+\begin{frame}[t]{Table 2A: the economic magnitude over one week}
+\K{Published result / controlled $t+2:t+6$ specification}
 \begin{center}
 {\fontsize{31}{36}\selectfont\red{$\beta=-4.137^{***}$}}\par
 \vspace{.12cm}
-{\large Newey–West $t=-2.86$}
+{\large Newey--West $t=-2.86$}
 \end{center}
 \gap
-\pair{plainbox}{换成常见波动}{ARA 上升一个标准差，未来一周市场收益约低 22.34 bp。}
-     {rosebox}{机制对应}{与散户买盘形成短期价格压力、随后修正相符。}
+\pair{plainbox}{One typical change}{A one-standard-deviation rise in ARA corresponds to about 22.34 bp lower market return over the following week.}
+     {rosebox}{Mechanism link}{Consistent with retail buying pressure followed by a correction.}
 \end{frame}
 
 % 22
-\begin{frame}[t]{Table 2B：机构注意力的逐日信号}
-\K{原论文结果 / AIA}
+\begin{frame}[t]{Table 2B: AIA's daily signal is different}
+\K{Published results / institutional attention}
 \numtable{\begin{tabularx}{\linewidth}{p{3.0cm}cccX}\toprule
-收益日 & $t+1$ & $t+2$ & $t+6$ & 解读\\\midrule
-AIA 系数 & $0.396^{*}$ & $0.240$ & $0.053$ & 多数单日结果不显著\\
-NW $t$ & $1.75$ & $1.18$ & $0.32$ & 与 ARA 时间模式不同\\\bottomrule
+Return day & $t+1$ & $t+2$ & $t+6$ & Interpretation\\\midrule
+AIA coefficient & $0.396^{*}$ & $0.240$ & $0.053$ & Most daily results are not significant\\
+NW $t$ & $1.75$ & $1.18$ & $0.32$ & Unlike ARA's timing pattern\\\bottomrule
 \end{tabularx}}
 \gap
 \begin{beamercolorbox}[wd=\linewidth,sep=10pt,rounded=true]{tealbox}
-机构关注的正向信号，更可能需要\textbf{重要信息事件}作为条件，而非出现在任意交易日。
+The positive signal from institutional attention may require a \textbf{major information event}, rather than an arbitrary trading day.
 \end{beamercolorbox}
 \end{frame}
 
 % 23
-\begin{frame}[t]{Table 2B：全样本一周预测并不强}
-\K{原论文：有控制的 $t+2:t+6$ 列}
-\pair{tealbox}{AIA 单独进入}{系数 $0.927$；NW $t=1.52$，未达到常用显著性水平。}
-     {plainbox}{同时控制 ARA}{AIA 系数 $1.089^{*}$；NW $t=1.72$，证据仍较弱。}
+\begin{frame}[t]{Table 2B: weak full-sample weekly predictability}
+\K{Published result / controlled $t+2:t+6$ specification}
+\pair{tealbox}{AIA alone}{Coefficient $0.927$; NW $t=1.52$, below conventional significance thresholds.}
+     {plainbox}{Controlling for ARA}{AIA coefficient $1.089^{*}$; NW $t=1.72$, still relatively weak evidence.}
 \gap
-\begin{center}\Large\blue{关键转向：}从“是否普遍有效”转向“公告前是否有效”。\end{center}
+\begin{center}\Large\blue{Next question:} Is AIA informative specifically before announcements?\end{center}
 \end{frame}
 
 % 24
-\begin{frame}[t]{本组复现：保留什么，替代什么？}
-\K{Table 2–4 的可得数据规格}
-\numtable{\begin{tabularx}{\linewidth}{p{3.6cm}XX}\toprule
-要素 & 原论文 & 本组\\\midrule
-散户注意力 & Google ARA & 作者公开 ARA\\
-机构注意力 & Bloomberg AIA & 异常指数期权成交量代理\\
-市场收益 & CRSP 全市场 & 标普 500 代理\\
-共同样本 & ARA／AIA 样本各异 & 2010–19，2,437 交易日\\
-异常新闻量 & 纳入控制 & 缺数据，未纳入\\\bottomrule
+\begin{frame}[t]{Partial replication: retained and substituted inputs}
+\K{The feasible specification for Tables 2--4}
+\numtable{\begin{tabularx}{\linewidth}{p{3.6cm}YY}\toprule
+Element & Published study & Replication exercise\\\midrule
+Retail attention & Google ARA & Authors' released ARA\\
+Institutional attention & Bloomberg AIA & Abnormal index-options volume proxy\\
+Market return & CRSP broad market & S\&P 500 proxy\\
+Sample & Separate ARA and AIA coverage & 2010--19; 2,437 common trading days\\
+Abnormal news volume & Included control & Unavailable; omitted\\\bottomrule
 \end{tabularx}}
-\take{“复现”是部分规格重建；AIA 代理不能视为原阅读指标。}
 \end{frame}
 
 % 25
-\begin{frame}[t]{Table 2 本组对照：ARA 的负号保留}
-\K{有控制的未来一周预测}
+\begin{frame}[t]{Table 2 replication: ARA retains the negative sign}
+\K{Controlled return over the following week}
 \numtable{\begin{tabularx}{\linewidth}{p{4.0cm}XX}\toprule
- & 原论文 & 本组\\\midrule
-系数 & $-4.137^{***}$ & $-1.363$\\
+ & Published study & Replication\\\midrule
+Coefficient & $-4.137^{***}$ & $-1.363$\\
 NW30 $t$ & $-2.86$ & $-1.10$\\
-一标准差效应 & $-22.34$ bp & $-7.28$ bp\\
-样本日 & 3,903 & 2,437\\\bottomrule
+One-SD effect & $-22.34$ bp & $-7.28$ bp\\
+Trading days & 3,903 & 2,437\\\bottomrule
 \end{tabularx}}
 \gap
 \begin{beamercolorbox}[wd=\linewidth,sep=10pt,rounded=true]{rosebox}
-\textbf{结论：}方向相同，幅度较小；本组没有得到原论文的显著负向预测。
+\textbf{Reading:} The sign matches, but the estimated effect is smaller and statistically inconclusive in the replication.
 \end{beamercolorbox}
 \end{frame}
 
 % 26
-\begin{frame}[t]{Table 2 本组对照：AIA 代理仍不显著}
-\K{有控制的未来一周预测}
+\begin{frame}[t]{Table 2 replication: the AIA proxy is insignificant}
+\K{Controlled return over the following week}
 \numtable{\begin{tabularx}{\linewidth}{p{4.0cm}XX}\toprule
- & 原 Bloomberg AIA & 本组期权代理\\\midrule
-系数 & $0.927$ & $0.197$\\
+ & Original Bloomberg AIA & Options-volume proxy\\\midrule
+Coefficient & $0.927$ & $0.197$\\
 NW30 $t$ & $1.52$ & $1.10$\\
-样本日 & 2,431 & 2,437\\\bottomrule
+Trading days & 2,431 & 2,437\\\bottomrule
 \end{tabularx}}
 \gap
-\pair{tealbox}{相似点}{两项全样本一周系数都没有强显著证据。}
-     {plainbox}{解释边界}{阅读行为与期权成交不是同一指标，系数不可直接比较大小。}
+\pair{tealbox}{Similarity}{Neither weekly full-sample estimate provides strong evidence.}
+     {plainbox}{Boundary}{Readership and options trading are different measures; coefficient sizes are not directly comparable.}
 \end{frame}
 
 % 27
-\begin{frame}[t]{Table 2 小结：一个负向基准，一个条件问题}
-\K{从基准回归进入机制检验}
-\pair{rosebox}{ARA}{原文显著为负；本组负号一致但不显著。下一问是摩擦状态是否放大它。}
-     {tealbox}{AIA}{全样本证据有限。下一问是公告窗口是否揭示正向预测。}
+\begin{frame}[t]{Table 2 in one slide: a baseline and a condition}
+\K{The next tests examine mechanisms}
+\pair{rosebox}{ARA}{Significantly negative in the paper; negative but insignificant in the replication. Next: do market frictions amplify it?}
+     {tealbox}{AIA}{Limited full-sample evidence. Next: does the signal appear before announcements?}
 \gap
 \begin{center}\large
-\red{Table 3：状态} \qquad \blue{Table 4：事件}
+\red{Table 3: market states} \qquad \blue{Table 4: news events}
 \end{center}
 \end{frame}
 
 % 28
-\begin{frame}[t]{Table 3 的任务：把市场摩擦放进来}
-\K{若是价格压力，状态应当改变预测强度}
-\tri{plainbox}{VIX 高}{流动性提供者对风险更敏感。}
-    {plainbox}{有效价差高}{交易冲击更难被吸收。}
-    {plainbox}{借贷费用高}{卖空纠偏成本更高。}
+\begin{frame}[t]{Table 3: bring market frictions into the test}
+\K{If price pressure is the channel, market states should change its strength}
+\tri{plainbox}{High VIX}{Liquidity providers are more sensitive to risk.}
+    {plainbox}{Wide effective spreads}{Trading pressure is harder to absorb.}
+    {plainbox}{High stock-lending fees}{Short-sale correction becomes more costly.}
 \gap
 \begin{beamercolorbox}[wd=\linewidth,sep=10pt,rounded=true]{rosebox}
-检验方式：按状态分组，比较 ARA 对未来一周收益的系数，再正式检验“高减低”。
+Split the sample by state, compare ARA coefficients, and test the high-minus-low difference.
 \end{beamercolorbox}
 \end{frame}
 
 % 29
-\begin{frame}[t]{Table 3：原文高 VIX 组回落更强}
-\K{论文原文 / VIX 分组}
+\begin{frame}[t]{Table 3: stronger reversal when VIX is high}
+\K{Published result / VIX split}
 \numtable{\begin{tabularx}{\linewidth}{p{3.8cm}cccX}\toprule
-ARA & 高 VIX & 低 VIX & 高减低 & 结果\\\midrule
-系数 & $-5.167$ & $-1.170$ & $-3.997$ & 差异为负\\
-White $t$ & $-2.92^{***}$ & $-1.23$ & $-1.99^{**}$ & 高组更明显\\
-一标准差效应 & $-27.96$ bp & $-6.29$ bp &  & \\ \bottomrule
+ARA & High VIX & Low VIX & High minus low & Interpretation\\\midrule
+Coefficient & $-5.167$ & $-1.170$ & $-3.997$ & Negative difference\\
+White $t$ & $-2.92^{***}$ & $-1.23$ & $-1.99^{**}$ & Stronger in high VIX\\
+One-SD effect & $-27.96$ bp & $-6.29$ bp & &\\\bottomrule
 \end{tabularx}}
 \gap
-\take{市场波动高时，原文的散户注意力负向预测更强。}
+\take{In the published results, retail attention predicts a larger reversal during high-volatility states.}
 \end{frame}
 
 % 30
-\begin{frame}[t]{Table 3：原文另两种摩擦也指向同一机制}
-\K{论文原文 / 本组未复现这两项}
-\pair{rosebox}{有效价差}{高价差组 ARA 系数 $-6.303$；低价差组 $-0.667$。}
-     {rosebox}{股票借贷费用}{高费用组 ARA 系数 $-17.968$；低费用组 $-4.000$。}
+\begin{frame}[t]{Table 3: two other frictions point in the same direction}
+\K{Published results / these splits are outside the replication}
+\pair{rosebox}{Effective spreads}{ARA coefficient: $-6.303$ in the high-spread group versus $-0.667$ in the low-spread group.}
+     {rosebox}{Stock-lending fees}{ARA coefficient: $-17.968$ in the high-fee group versus $-4.000$ in the low-fee group.}
 \gap
 \begin{beamercolorbox}[wd=\linewidth,sep=10pt,rounded=true]{plainbox}
-三类分组都符合“摩擦越大，短期价格压力越难被迅速纠正”的方向。
+All three splits fit the idea that stronger frictions slow correction of short-lived buying pressure.
 \end{beamercolorbox}
-\take{本组没有有效价差与历史股票借贷费用数据，不能宣称复现此处机制。}
 \end{frame}
 
 % 31
-\begin{frame}[t]{Table 3 本组对照：ARA 的 VIX 差异不稳健}
-\K{仅复现 VIX 分组 / 本组 NW30 推断}
-\numtable{\begin{tabularx}{\linewidth}{p{3.9cm}cccX}\toprule
-ARA & 高 VIX & 低 VIX & 高减低 & NW30 $t$\\\midrule
-本组系数 & $-2.192$ & $-0.692$ & $-1.500$ & $-1.11,\ -0.29,\ -0.43$\\
-原文系数 & $-5.167$ & $-1.170$ & $-3.997$ & 原文用 White 等推断\\\bottomrule
+\begin{frame}[t]{Table 3 replication: ARA's VIX difference is uncertain}
+\K{Only the VIX split was reconstructed / replication uses NW30 inference}
+\numtable{\begin{tabularx}{\linewidth}{p{3.8cm}cccX}\toprule
+ARA & High VIX & Low VIX & High minus low & NW30 $t$\\\midrule
+Replication coefficient & $-2.192$ & $-0.692$ & $-1.500$ & $-1.11,\ -0.29,\ -0.43$\\
+Published coefficient & $-5.167$ & $-1.170$ & $-3.997$ & Paper also reports White $t$\\\bottomrule
 \end{tabularx}}
 \gap
-\pair{rosebox}{点估计}{高 VIX 时更负，方向接近论文。}
-     {plainbox}{统计判断}{本组高低组差异不显著，不能确认状态放大。}
+\pair{rosebox}{Point estimates}{The high-VIX coefficient is more negative, as in the paper.}
+     {plainbox}{Inference}{The high-minus-low difference is not significant in the replication.}
 \end{frame}
 
 % 32
-\begin{frame}[t]{Table 3 本组对照：AIA 代理的状态差异}
-\K{仅复现 VIX 分组 / 关注推断方法}
-\numtable{\begin{tabularx}{\linewidth}{p{4.0cm}cccX}\toprule
-AIA & 高 VIX & 低 VIX & 高减低 & 差异的 $t$\\\midrule
-原论文 & $1.480$ & $-0.200$ & $1.680$ & White $1.96^{**}$\\
-本组期权代理 & $0.326$ & $-0.166$ & $0.491$ & White $1.81^{*}$\\
-本组 NW30 & & & & $1.43$\\\bottomrule
+\begin{frame}[t]{Table 3 replication: the AIA proxy across VIX states}
+\K{The inference method matters}
+\numtable{\begin{tabularx}{\linewidth}{p{3.8cm}cccX}\toprule
+AIA & High VIX & Low VIX & High minus low & Difference $t$\\\midrule
+Published study & $1.480$ & $-0.200$ & $1.680$ & White $1.96^{**}$\\
+Options-volume proxy & $0.326$ & $-0.166$ & $0.491$ & White $1.81^{*}$\\
+Replication NW30 & & & & $1.43$\\\bottomrule
 \end{tabularx}}
 \gap
-\take{本组在 White 推断下只有较弱的 10\% 证据；考虑时间相关后不显著。}
+\take{The proxy offers weak 10\% evidence with White errors, but not after allowing for time dependence.}
 \end{frame}
 
 % 33
-\begin{frame}[t]{Table 3 小结：方向信息与机制证据要分开}
-\K{如何读状态检验}
-\pair{rosebox}{论文原文}{高 VIX、高价差、高借贷费用下，ARA 负向预测更强。}
-     {tealbox}{本组结果}{VIX 高组系数更负，但“高减低”缺少稳健显著性。}
+\begin{frame}[t]{Table 3 synthesis: separate direction from mechanism}
+\K{How to read the state tests}
+\pair{rosebox}{Published pattern}{ARA is more negative under high VIX, wide spreads, and high lending fees.}
+     {tealbox}{Replication pattern}{The high-VIX point estimate is more negative, but the difference is not robustly significant.}
 \gap
 \begin{beamercolorbox}[wd=\linewidth,sep=10pt,rounded=true]{plainbox}
-本组额外计算的 TED 是\textbf{融资压力扩展}，不是股票借贷费用，也不替代原表检验。
+An additional TED-spread analysis concerns \textbf{funding stress}; it is not a measure of stock-lending fees and cannot replace that test.
 \end{beamercolorbox}
 \end{frame}
 
 % 34
-\begin{frame}[t]{Table 4 的转向：机构关注需要信息事件}
-\K{全样本不显著，不代表任何时期都无预测力}
+\begin{frame}[t]{Table 4: institutional attention needs an information event}
+\K{A weak full-sample effect can hide a conditional relation}
 \begin{center}
 \begin{tikzpicture}[>=Latex]
-\node[draw=rule,fill=white,rounded corners,minimum width=3.0cm,minimum height=.9cm] (a) at (0,0) {公告前关注};
-\node[draw=rule,fill=white,rounded corners,minimum width=3.0cm,minimum height=.9cm] (b) at (4.2,0) {重大信息公布};
-\node[draw=rule,fill=white,rounded corners,minimum width=3.3cm,minimum height=.9cm] (c) at (8.8,0) {不确定性消解};
+\node[draw=rule,fill=white,rounded corners,minimum width=3.0cm,minimum height=.9cm] (a) at (0,0) {Attention before news};
+\node[draw=rule,fill=white,rounded corners,minimum width=3.0cm,minimum height=.9cm] (b) at (4.2,0) {Major announcement};
+\node[draw=rule,fill=white,rounded corners,minimum width=3.3cm,minimum height=.9cm] (c) at (8.8,0) {Uncertainty resolves};
 \draw[->,thick,teal] (a)--(b);\draw[->,thick,teal] (b)--(c);
 \end{tikzpicture}
 \end{center}
 \gap
-\pair{tealbox}{核心预测}{未来一周包含重大公告时，AIA 的正向系数更大。}
-     {plainbox}{对照组}{未来窗口没有公告的日子。}
+\pair{tealbox}{Prediction}{AIA's positive coefficient is larger if a major announcement occurs in the future-return window.}
+     {plainbox}{Comparison}{Days when that future window has no announcement.}
 \end{frame}
 
 % 35
-\begin{frame}[t]{Table 4：什么算“有新闻”？}
-\K{公告必须落在未来 $t+2:t+6$}
-\pair{tealbox}{Macro News}{FOMC 会议、非农就业、PPI 公告。}
-     {plainbox}{All News}{宏观公告，或大公司财报公告集中出现。}
+\begin{frame}[t]{Table 4: what counts as a news window?}
+\K{The announcement must occur between $t+2$ and $t+6$}
+\pair{tealbox}{Macro News}{FOMC meetings, nonfarm payrolls, or PPI releases.}
+     {plainbox}{All News}{Macro news or clustered earnings announcements by large firms.}
 \gap
 \begin{beamercolorbox}[wd=\linewidth,sep=10pt,rounded=true]{goldbox}
-分组依据是\textbf{公告是否发生}；并非根据消息利好、利空或当期收益来划分。
+The split is based on \textbf{whether an announcement occurs}, not whether its content is good or bad.
 \end{beamercolorbox}
-\take{本组只重建了 Macro News；All News 需要完整历史财报公告数据。}
 \end{frame}
 
 % 36
-\begin{frame}[t]{Table 4A：原文 AIA 的正向预测集中在公告窗口}
-\K{论文原文 / Macro News}
-\numtable{\begin{tabularx}{\linewidth}{p{4.0cm}cccX}\toprule
-AIA & 有公告 & 无公告 & 有减无 & White $t$\\\midrule
-系数 & $2.076$ & $-0.375$ & $2.451$ & $3.20^{***},\ -0.63,\ 2.78^{***}$\\
-一标准差效应 & $+20.82$ bp & $-3.74$ bp & &\\\bottomrule
+\begin{frame}[t]{Table 4A: AIA's positive signal appears around news}
+\K{Published result / Macro News}
+\numtable{\begin{tabularx}{\linewidth}{p{3.8cm}cccX}\toprule
+AIA & News & No news & News minus no news & White $t$: news; diff.\\\midrule
+Coefficient & $2.076$ & $-0.375$ & $2.451$ & $3.20^{***};\ 2.78^{***}$\\
+One-SD effect & $+20.82$ bp & $-3.74$ bp & &\\\bottomrule
 \end{tabularx}}
 \gap
-\pair{tealbox}{关键不是正号本身}{有公告组显著为正，且组间差异显著。}
-     {plainbox}{对应机制}{机构关注可能在公告前反映有计划的信息处理。}
+\pair{tealbox}{Key comparison}{The news-window coefficient is positive, and the between-window difference is significant.}
+     {plainbox}{Mechanism link}{Institutional attention may reflect deliberate analysis before news resolves uncertainty.}
 \end{frame}
 
 % 37
-\begin{frame}[t]{Table 4B：原文 ARA 没有同样的窗口差异}
-\K{论文原文 / Macro News}
-\numtable{\begin{tabularx}{\linewidth}{p{4.0cm}cccX}\toprule
-ARA & 有公告 & 无公告 & 有减无 & White $t$\\\midrule
-系数 & $-2.505$ & $-5.225$ & $2.720$ & $-1.69^{*},\ -4.50^{***},\ 1.44$\\\bottomrule
+\begin{frame}[t]{Table 4B: ARA has no analogous news-window difference}
+\K{Published result / Macro News}
+\numtable{\begin{tabularx}{\linewidth}{p{3.8cm}cccX}\toprule
+ARA & News & No news & News minus no news & White $t$\\\midrule
+Coefficient & $-2.505$ & $-5.225$ & $2.720$ & $-1.69^{*},\ -4.50^{***},\ 1.44$\\\bottomrule
 \end{tabularx}}
 \gap
-\pair{rosebox}{与 AIA 的不同}{ARA 仍主要呈负向预测；“有减无”不显著。}
-     {plainbox}{解释}{散户压力与机构公告前的信息处理是不同的回报路径。}
+\pair{rosebox}{Different from AIA}{ARA remains mainly negative; its between-window difference is insignificant.}
+     {plainbox}{Interpretation}{Retail pressure and institutional pre-news analysis imply different return paths.}
 \end{frame}
 
 % 38
-\begin{frame}[t]{本组如何重建 Macro News？}
-\K{保留事件定义，但承认口径差异}
-\tri{plainbox}{真实日期}{收集 FOMC、非农、PPI 的官方公告日。}
-    {plainbox}{未来窗口}{判断公告是否落入 $t+2$ 至 $t+6$。}
-    {plainbox}{回归样本}{有公告 1,324 日；无公告 1,113 日。}
+\begin{frame}[t]{How was the Macro News indicator reconstructed?}
+\K{Preserve the event definition while recognizing differences in implementation}
+\tri{plainbox}{Real dates}{Use official FOMC, payroll, and PPI announcement calendars.}
+    {plainbox}{Future window}{Mark whether an event falls on trading days $t+2$ through $t+6$.}
+    {plainbox}{Regression sample}{1,324 news-window days and 1,113 non-news days.}
 \gap
 \begin{beamercolorbox}[wd=\linewidth,sep=10pt,rounded=true]{tealbox}
-事件筛选、休市日处理可能与作者不同；AIA 仍是期权成交代理，且缺少 AbnNews 控制。
+Event selection and holiday treatment may differ from the paper. AIA remains an options-volume proxy, and abnormal news volume is omitted as a control.
 \end{beamercolorbox}
 \end{frame}
 
 % 39
-\begin{frame}[t]{Table 4 本组对照：AIA 公告效应没有复现}
-\K{Macro News / AIA 期权代理}
-\numtable{\begin{tabularx}{\linewidth}{p{4.0cm}cccX}\toprule
- & 有公告 & 无公告 & 有减无 & 差异 $t$\\\midrule
-原 AIA & $2.076$ & $-0.375$ & $2.451$ & White $2.78^{***}$\\
-本组代理 & $0.280$ & $0.209$ & $0.071$ & NW30 $0.22$\\\bottomrule
+\begin{frame}[t]{Table 4 replication: no significant AIA news effect}
+\K{Macro News / index-options-volume proxy}
+\numtable{\begin{tabularx}{\linewidth}{p{3.8cm}cccX}\toprule
+ & News & No news & News minus no news & Difference $t$\\\midrule
+Original AIA & $2.076$ & $-0.375$ & $2.451$ & White $2.78^{***}$\\
+Options-volume proxy & $0.280$ & $0.209$ & $0.071$ & NW30 $0.22$\\\bottomrule
 \end{tabularx}}
 \gap
-\pair{tealbox}{点估计}{有公告时为正。}
-     {plainbox}{决定性对照}{“有减无”几乎为零且不显著，不能说公告窗口更强。}
+\pair{tealbox}{Point estimate}{The coefficient on news-window days is positive.}
+     {plainbox}{Decisive contrast}{The difference from non-news days is near zero and insignificant.}
 \end{frame}
 
 % 40
-\begin{frame}[t]{Table 4 本组对照：ARA 组间差异也不显著}
-\K{Macro News / ARA}
-\numtable{\begin{tabularx}{\linewidth}{p{4.0cm}cccX}\toprule
- & 有公告 & 无公告 & 有减无 & 差异 $t$\\\midrule
-原论文 & $-2.505$ & $-5.225$ & $2.720$ & White $1.44$\\
-本组 & $-2.333$ & $0.322$ & $-2.655$ & NW30 $-1.17$\\\bottomrule
+\begin{frame}[t]{Table 4 replication: ARA's window difference is also weak}
+\K{Macro News / retail attention}
+\numtable{\begin{tabularx}{\linewidth}{p{3.8cm}cccX}\toprule
+ & News & No news & News minus no news & Difference $t$\\\midrule
+Published study & $-2.505$ & $-5.225$ & $2.720$ & White $1.44$\\
+Replication & $-2.333$ & $0.322$ & $-2.655$ & NW30 $-1.17$\\\bottomrule
 \end{tabularx}}
 \gap
-\pair{rosebox}{共同点}{两份结果都没有显著的组间差异。}
-     {plainbox}{不同点}{差异方向相反；不能笼统称为“与原文一致”。}
+\pair{rosebox}{Common feature}{Neither between-window difference is significant.}
+     {plainbox}{Important difference}{Their signs differ, so the results are not uniformly aligned.}
 \end{frame}
 
 % 41
-\begin{frame}[t]{Table 4 小结：最关键的是“窗口差异”}
-\K{不要只读一组系数的正负}
-\pair{tealbox}{论文主张}{AIA 的正向预测在重大公告前显著增强。}
-     {plainbox}{本组证据}{期权代理的“有减无”不显著，未验证这一条件关系。}
+\begin{frame}[t]{Table 4 synthesis: the window difference is central}
+\K{Do not read one positive coefficient in isolation}
+\pair{tealbox}{Published claim}{AIA's positive predictability rises significantly before major announcements.}
+     {plainbox}{Replication evidence}{The proxy's news-minus-no-news difference is insignificant.}
 \gap
 \begin{beamercolorbox}[wd=\linewidth,sep=10pt,rounded=true]{goldbox}
-当前结果也不能否定原 AIA：本组观察的是期权交易活动，原文观察的是 Bloomberg 阅读行为。
+The replication does not refute the original AIA result: it observes options trading, while the paper observes Bloomberg readership.
 \end{beamercolorbox}
 \end{frame}
 
 % 42
-\begin{frame}[t]{2.4 交易证据：散户关注是否真的伴随买入？}
-\K{论文原文 / 交易机制补充}
-\pair{rosebox}{散户订单失衡}{附录表中 ARA 与散户净买入指标正相关。}
-     {rosebox}{基金流量}{ARA 与股票型基金资金流入也正相关。}
+\begin{frame}[t]{Section 2.4: does retail attention accompany buying?}
+\K{Published trading evidence}
+\pair{rosebox}{Retail order imbalance}{ARA is positively associated with measures of net retail buying.}
+     {rosebox}{Mutual-fund flows}{ARA is also positively associated with equity-fund inflows.}
 \gap
 \numtable{\begin{tabularx}{\linewidth}{p{5.1cm}XX}\toprule
-同期交易结果 & 系数 & NW $t$\\\midrule
+Contemporaneous trading outcome & Coefficient & NW $t$\\\midrule
 ARA $\rightarrow$ ROIB1 & $3.555^{**}$ & $2.25$\\
-ARA $\rightarrow$ 基金流量 & $0.187^{**}$ & $2.42$\\\bottomrule
+ARA $\rightarrow$ fund flow & $0.187^{**}$ & $2.42$\\\bottomrule
 \end{tabularx}}
-\take{这一步把“关注”与“买盘压力”的机制接起来；本组未复现交易数据。}
 \end{frame}
 
 % 43
-\begin{frame}[t]{2.4 下跌日的散户买入：为何有助于解释反转？}
-\K{论文原文 / 交易机制补充}
-\pair{rosebox}{负收益日}{ARA 与散户净买入关系更强，符合逆势买入的行为。}
-     {plainbox}{极端下跌日}{市场处于最差 5\% 收益区间时，相关买入指标仍为正。}
+\begin{frame}[t]{Section 2.4: retail buying on down-market days}
+\K{Published trading evidence}
+\pair{rosebox}{Negative-return days}{The association between ARA and net retail buying is stronger, consistent with contrarian purchases.}
+     {plainbox}{Extreme down days}{The buying measures remain positive when market returns are in the bottom 5\% of the sample.}
 \gap
 \begin{beamercolorbox}[wd=\linewidth,sep=10pt,rounded=true]{goldbox}
-若散户在坏消息时仍增加买盘，短期价格压力和后续修正就可能同时出现。
+Buying even after bad news can create short-lived support for prices followed by a correction.
 \end{beamercolorbox}
 \end{frame}
 
 % 44
-\begin{frame}[t]{2.5 样本外：预测能否离开估计样本？}
-\K{论文原文 / Table 5}
-\numtable{\begin{tabularx}{\linewidth}{p{4.0cm}cccX}\toprule
-样本外 $R^2$ & 全样本 & 条件组 & 对照组 & 读法\\\midrule
-ARA & $1.49\%^{**}$ & 高 VIX $2.70\%^{***}$ & 低 VIX $-0.39\%$ & 状态依赖\\
-AIA & $-0.36\%$ & Macro News $1.19\%^{*}$ & 无新闻 $-0.39\%$ & 事件依赖\\\bottomrule
+\begin{frame}[t]{Section 2.5: does predictability survive out of sample?}
+\K{Published Table 5}
+\numtable{\begin{tabularx}{\linewidth}{p{3.5cm}cccX}\toprule
+Out-of-sample $R^2$ & Full sample & Relevant state & Comparison & Pattern\\\midrule
+ARA & $1.49\%^{**}$ & High VIX $2.70\%^{***}$ & Low VIX $-0.39\%$ & State dependence\\
+AIA & $-0.36\%$ & Macro News $1.19\%^{*}$ & No news $-0.39\%$ & Event dependence\\\bottomrule
 \end{tabularx}}
 \gap
-\take{样本外结果延续了论文的结构：散户看摩擦状态，机构看新闻窗口。}
+\take{The out-of-sample pattern mirrors the paper's central distinction: frictions for retail, news for institutions.}
 \end{frame}
 
 % 45
-\begin{frame}[t]{2.6 稳健性：结论是否依赖特定设定？}
-\K{论文原文 / Table 6}
-\tri{plainbox}{时间与样本}{排除危机期、十二月；控制星期效应。}
-    {plainbox}{统计方法}{更换标准误、加入滞后关注、移动平均。}
-    {plainbox}{指标与组合}{改用 S\&P 500 收益、调整市值权重。}
+\begin{frame}[t]{Section 2.6: are the results robust to other choices?}
+\K{Published Table 6}
+\tri{plainbox}{Time and sample}{Exclude the crisis or December; add weekday effects.}
+    {plainbox}{Inference}{Change standard errors, add lagged attention, or smooth attention.}
+    {plainbox}{Measures}{Use S\&P 500 returns or alternative value weights.}
 \gap
-\pair{rosebox}{ARA}{多数设定仍为负。}
-     {tealbox}{AIA-News}{多数新闻条件设定仍为正。}
-\take{这里是论文原文的稳健性，不是本组另行复现。}
+\pair{rosebox}{ARA}{The coefficient remains negative in most checks.}
+     {tealbox}{AIA around news}{The conditional coefficient remains positive in most checks.}
 \end{frame}
 
 % 46
-\begin{frame}[t]{2.7 横截面：哪些股票组合承受更多影响？}
-\K{论文原文 / Table 7}
-\pair{rosebox}{流动性排序}{ARA 对未来收益的负向预测，在不流动组合更强。\par 例：全样本最流动组 $-3.443$；最不流动组 $-5.675$。}
-     {tealbox}{Beta 排序}{重大新闻前，AIA 的正向预测在高 beta 组合更强。\par Macro News：低 beta $1.284$；高 beta $3.512$。}
+\begin{frame}[t]{Section 2.7: which portfolios bear more of the effect?}
+\K{Published Table 7}
+\pair{rosebox}{Liquidity sorting}{ARA's negative predictability is stronger for illiquid stocks.\par Full sample: $-3.443$ for the most liquid portfolio versus $-5.675$ for the least liquid.}
+     {tealbox}{Beta sorting}{Before major news, AIA's positive predictability is stronger for high-beta stocks.\par Macro News: $1.284$ for low beta versus $3.512$ for high beta.}
 \gap
 \begin{beamercolorbox}[wd=\linewidth,sep=10pt,rounded=true]{plainbox}
-横截面结果把两条机制映射到\textbf{流动性暴露}和\textbf{市场风险暴露}。
+The cross-section connects the two channels to \textbf{liquidity exposure} and \textbf{market-risk exposure}.
 \end{beamercolorbox}
 \end{frame}
 
 % 47
-\begin{frame}[t]{3.1 新闻分心：对散户机制的外生冲击}
-\K{论文原文 / Table 8}
-\pair{rosebox}{第一阶段}{新闻压力高的“分心日”，ARA 更低；系数 $-0.014^{***}$，第一阶段 $F=19.673$。}
-     {plainbox}{第二阶段}{工具变量估计 ARA 对未来收益的系数为 $-23.737$；NW $t=-1.87^{*}$。}
+\begin{frame}[t]{Section 3.1: news distraction as an attention shock}
+\K{Published Table 8}
+\pair{rosebox}{First stage}{On high-news-pressure distraction days, ARA falls: coefficient $-0.014^{***}$ and first-stage $F=19.673$.}
+     {plainbox}{Second stage}{Instrumented ARA predicts future returns with coefficient $-23.737$; NW $t=-1.87^{*}$.}
 \gap
 \begin{beamercolorbox}[wd=\linewidth,sep=10pt,rounded=true]{goldbox}
-对 AIA 的工具变量第一阶段很弱（$F=0.687$）；不能借此给机构机制做强因果解释。
+The instrument is weak for AIA ($F=0.687$), so it offers no strong causal evidence for the institutional channel.
 \end{beamercolorbox}
 \end{frame}
 
 % 48
-\begin{frame}[t]{3.2 集中财报：为什么公告前收益会“错位”？}
-\K{论文原文 / Figure 3 与 Table 9}
-\pair{rosebox}{高 ARA 的盘后财报日}{当日收益系数 $+33.478$ bp 且显著；次日对应系数 $-9.794$ bp，不显著。}
-     {plainbox}{低 ARA 的盘后财报日}{当日 $+9.396$ bp，不显著；次日 $+26.455$ bp 且显著。}
+\begin{frame}[t]{Section 3.2: clustered earnings and return timing}
+\K{Published Figure 3 and Table 9}
+\pair{rosebox}{High-ARA after-hours earnings days}{The same-day coefficient is $+33.478$ bp and significant; the next-day coefficient is $-9.794$ bp and insignificant.}
+     {plainbox}{Low-ARA after-hours earnings days}{The same-day coefficient is $+9.396$ bp and insignificant; the next-day coefficient is $+26.455$ bp and significant.}
 \gap
 \begin{beamercolorbox}[wd=\linewidth,sep=10pt,rounded=true]{tealbox}
-散户关注引起的提前买盘，可以改变公告溢价落在哪一天；这是两条机制交汇的应用。
+Retail buying before an announcement can change which day captures the return premium.
 \end{beamercolorbox}
 \end{frame}
 
 % 49
-\begin{frame}[t]{最后的判断：论文逻辑与本组证据}
-\K{从研究问题回到两条路径}
-\tri{rosebox}{论文中的散户}{ARA $\rightarrow$ 买盘压力 $\rightarrow$ 随后回落；高摩擦状态更强。}
-    {tealbox}{论文中的机构}{AIA $\rightarrow$ 公告前信息处理 $\rightarrow$ 公告窗口正向收益。}
-    {goldbox}{本组复现}{Table 2–4 的点估计有部分方向相似，但稳健显著性未复现。}
+\begin{frame}[t]{Final synthesis: the paper and the replication}
+\K{Return to the two paths}
+\tri{rosebox}{Retail in the paper}{ARA $\rightarrow$ buying pressure $\rightarrow$ reversal; stronger under market frictions.}
+    {tealbox}{Institutional in the paper}{AIA $\rightarrow$ pre-news analysis $\rightarrow$ positive news-window returns.}
+    {goldbox}{Partial replication}{Some point-estimate signs align, but robust significance in Tables 2--4 is not recovered.}
 \gap
 \begin{beamercolorbox}[wd=\linewidth,sep=11pt,rounded=true]{plainbox}
 \centering\large\bfseries
-“谁在关注”决定机制；“何时关注”决定它是否显现在市场收益中。
+Who pays attention shapes the mechanism; when they pay attention determines when it appears in returns.
 \end{beamercolorbox}
-\gap
-{\small\color{muted}下一步：补齐原始 AIA、CRSP 全市场收益和新闻数据，再检验完整规格。}
 \end{frame}
 \end{document}
+
 
