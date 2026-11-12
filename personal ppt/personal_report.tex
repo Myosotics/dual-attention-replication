@@ -1,0 +1,214 @@
+\documentclass[aspectratio=169,11pt]{beamer}
+\usepackage{fontspec,amsmath,booktabs,array,tikz}
+\usetikzlibrary{arrows.meta,positioning}
+\setsansfont{Noto Sans CJK SC}
+\setmainfont{Noto Sans CJK SC}
+\XeTeXlinebreaklocale "zh"
+\XeTeXlinebreakskip = 0pt plus 1pt
+\definecolor{ink}{HTML}{183044}
+\definecolor{muted}{HTML}{667783}
+\definecolor{paper}{HTML}{F7F6F2}
+\definecolor{retail}{HTML}{C95341}
+\definecolor{inst}{HTML}{197B83}
+\definecolor{line}{HTML}{D7DDDC}
+\definecolor{lightred}{HTML}{F8EAE6}
+\definecolor{lightteal}{HTML}{E6F2F1}
+\setbeamercolor{background canvas}{bg=paper}
+\setbeamercolor{normal text}{fg=ink,bg=paper}
+\setbeamercolor{frametitle}{fg=ink,bg=paper}
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{frametitle}{\vspace{0.28cm}\hspace{0.56cm}\insertframetitle\par\vspace{0.10cm}\hspace{0.58cm}{\color{line}\rule{14.6cm}{0.6pt}}}
+\setbeamerfont{frametitle}{size=\LARGE,series=\bfseries}
+\setbeamersize{text margin left=0.62cm,text margin right=0.62cm}
+\setbeamertemplate{footline}{\leavevmode\hbox{\hspace{0.62cm}{\color{muted}\scriptsize 个人汇报 \quad | \quad Da et al., Market Returns and a Tale of Two Types of Attention}\hfill{\color{muted}\scriptsize\insertframenumber/\inserttotalframenumber}\hspace{0.62cm}}\vspace{0.22cm}}
+\newcommand{\eyebrow}[1]{{\color{inst}\bfseries\small #1}\par\vspace{0.12cm}}
+\newcommand{\source}[1]{\begin{tikzpicture}[remember picture,overlay]\node[anchor=south west,text width=14.5cm,inner sep=0pt] at ([xshift=.62cm,yshift=.55cm]current page.south west){\fontsize{7}{8}\selectfont\color{muted}#1};\end{tikzpicture}}
+\newcommand{\card}[3]{\begin{beamercolorbox}[wd=\linewidth,sep=8pt,rounded=true]{#1}{\normalsize\bfseries #2}\par\vspace{0.10cm}{\small #3}\end{beamercolorbox}}
+\setbeamercolor{retailcard}{fg=ink,bg=lightred}
+\setbeamercolor{instcard}{fg=ink,bg=lightteal}
+\setbeamercolor{neutralcard}{fg=ink,bg=white}
+\newcommand{\redtxt}[1]{{\color{retail}\bfseries #1}}
+\newcommand{\tealtxt}[1]{{\color{inst}\bfseries #1}}
+\begin{document}
+
+% 1 — title
+\begin{frame}[plain]
+\vspace{0.6cm}
+{\color{inst}\bfseries\small PAPER REVIEW / PERSONAL PRESENTATION}\par
+\vspace{0.6cm}
+{\fontsize{31}{41}\selectfont\bfseries 两种注意力，\par 市场收益的两条路径}\par
+\vspace{0.52cm}
+{\color{muted}\Large Market Returns and a Tale of Two Types of Attention}\par
+\vspace{0.7cm}
+\begin{tikzpicture}
+\fill[retail] (0,0) rectangle (1.0,0.08);
+\fill[inst] (1.13,0) rectangle (2.13,0.08);
+\end{tikzpicture}\par
+\vspace{0.4cm}
+{\large 论文核心逻辑与 Table 2–4 的部分复现}\par
+\vfill
+{\color{muted}\small 个人汇报 \quad · \quad Da, Hua, Hung \& Peng}\par
+\end{frame}
+
+% 2 — mechanism
+\begin{frame}{研究问题：个股注意力能否汇聚成市场效应？}
+\eyebrow{从“谁在关注”到“为何有回报”}
+\begin{columns}[T,onlytextwidth]
+\column{0.49\textwidth}
+\card{retailcard}{散户关注 ARA}{显眼的股票吸引买盘\par \vspace{0.18cm}短期价格压力 \(\rightarrow\) 随后回落\par \vspace{0.18cm}\redtxt{预测：未来一周收益偏低}}
+\column{0.49\textwidth}
+\card{instcard}{机构关注 AIA}{有计划地处理重要信息\par \vspace{0.18cm}公告前关注 \(\rightarrow\) 不确定性消解\par \vspace{0.18cm}\tealtxt{预测：公告窗口收益偏高}}
+\end{columns}
+\vspace{0.45cm}
+{\bfseries 关键识别点：}个股层面的效应可能彼此抵消；只有共同的市场成分才可能预测大盘。
+\source{来源：原论文 Introduction、Section 2.1–2.3。机制解释不等于因果识别。}
+\end{frame}
+
+% 3 — empirical design
+\begin{frame}{经验设计：同一预测窗口，两类注意力}
+\eyebrow{指标 \quad \(\rightarrow\) \quad 时间 \quad \(\rightarrow\) \quad 未来收益}
+\begin{columns}[T,onlytextwidth]
+\column{0.49\textwidth}
+\card{retailcard}{ARA \; 散户}{个股 Google 异常搜索量 ASVI\par 市值加权得到市场关注度}
+\column{0.49\textwidth}
+\card{instcard}{AIA \; 机构}{个股 Bloomberg 阅读行为 DMR\par 高关注指示变量再市值加权}
+\end{columns}
+\vspace{0.38cm}
+\begin{center}
+\begin{tikzpicture}[>=Latex]
+\node[draw=line,rounded corners,fill=white,minimum width=2.8cm,minimum height=.85cm] (a) at (0,0) {\(t\)：观察注意力};
+\node[draw=line,rounded corners,fill=white,minimum width=2.7cm,minimum height=.85cm] (b) at (4.3,0) {\(t+1\)：跳过};
+\node[draw=line,rounded corners,fill=white,minimum width=3.7cm,minimum height=.85cm] (c) at (9.1,0) {\(t+2\) 至 \(t+6\)：累计收益};
+\draw[->,thick,inst] (a)--(b); \draw[->,thick,inst] (b)--(c);
+\end{tikzpicture}
+\end{center}
+\vspace{0.17cm}
+\centering\large\(R_{t+2:t+6}=\alpha+\beta\,\mathrm{Attention}_t+\gamma X_t+\varepsilon_t\)
+\source{来源：原论文 Table 2–4；跳过第 1 日以降低前视偏差。}
+\end{frame}
+
+% 4 — roadmap
+\begin{frame}{三张表是一条递进的证据链}
+\eyebrow{先看是否预测，再看何时更强，最后看信息事件}
+\vspace{0.13cm}
+\begin{columns}[T,onlytextwidth]
+\column{0.32\textwidth}
+\card{neutralcard}{01 \quad Table 2}{全样本基准\par \vspace{0.12cm}ARA 是否预测回落？\par AIA 是否普遍有效？}
+\column{0.32\textwidth}
+\card{neutralcard}{02 \quad Table 3}{市场状态\par \vspace{0.12cm}高 VIX 时，价格压力是否更明显？}
+\column{0.32\textwidth}
+\card{neutralcard}{03 \quad Table 4}{新闻窗口\par \vspace{0.12cm}宏观公告前，AIA 是否更有预测力？}
+\end{columns}
+\vspace{0.12cm}
+\begin{beamercolorbox}[wd=\linewidth,sep=7pt,rounded=true]{instcard}
+\textbf{本组实际复现范围：}Table 2 基准回归；Table 3 的 VIX 分组；Table 4 的 Macro News 分组。\end{beamercolorbox}
+\source{未估计：Table 3 价差／借贷费用；Table 4 All News。}
+\end{frame}
+
+% 5 — table 2
+\begin{frame}{Table 2｜散户回落方向一致，显著性未复现}
+\eyebrow{基准：未来第 2–6 个交易日收益}
+\vspace{0.13cm}
+\small
+\renewcommand{\arraystretch}{1.12}
+\begin{tabular}{p{4.3cm}p{4.5cm}p{4.5cm}}
+\toprule
+\textbf{检验} & \textbf{原论文} & \textbf{本组结果}\\
+\midrule
+\redtxt{ARA｜有控制，第 8 列} & \(-4.137^{***}\;(t=-2.86)\) & \(-1.363\;(t=-1.10)\) \\
+一标准差对应收益 & \(-22.34\) bp & \(-7.28\) bp \\
+\tealtxt{AIA｜有控制，第 8 列} & \(0.927\;(t=1.52)\) & \(0.197\;(t=1.10)\) \\
+样本交易日 & ARA 3,903；AIA 2,431 & 两项均 2,437 \\
+\bottomrule
+\end{tabular}
+\vspace{0.08cm}
+\begin{beamercolorbox}[wd=\linewidth,sep=7pt,rounded=true]{retailcard}
+\textbf{读法：}本组 ARA 点估计仍为负，但证据不足；期权代理也没有显著的一周预测力。\end{beamercolorbox}
+\source{原文：Table 2，PDF pp.55–56；本组：program/table2/result。t 为 NW30；本组 AIA 为期权代理。}
+\end{frame}
+
+% 6 — table 3
+\begin{frame}{Table 3｜高 VIX 的“更强回落”未获稳健支持}
+\eyebrow{状态检验：只比较本组实际估计的 VIX 分组}
+\vspace{0.12cm}
+\small
+\renewcommand{\arraystretch}{1.1}
+\begin{tabular}{p{4.3cm}p{4.4cm}p{4.6cm}}
+\toprule
+\textbf{对照} & \textbf{原论文 \(\beta\)；White \(t\)} & \textbf{本组 \(\beta\)；NW30 \(t\)}\\
+\midrule
+\redtxt{ARA｜高 VIX} & \(-5.167\)；\(-2.92^{***}\) & \(-2.192\)；\(-1.11\) \\
+\redtxt{ARA｜高减低} & \(-3.997\)；\(-1.99^{**}\) & \(-1.500\)；\(-0.43\) \\
+\tealtxt{AIA｜高减低} & \(1.680\)；\(1.96^{**}\) & 期权代理 \(0.491\)；\(1.43\) \\
+\bottomrule
+\end{tabular}
+\vspace{0.18cm}
+\begin{beamercolorbox}[wd=\linewidth,sep=7pt,rounded=true]{instcard}
+\textbf{读法：}方向上有相似之处，组间差异在本组 NW30 推断下都不显著。\end{beamercolorbox}
+\vspace{0.07cm}
+{\small 原文的有效价差和股票借贷费用机制，本组没有对应数据检验；TED 仅是融资压力扩展。}
+\source{原文：Table 3，PDF p.57；本组：program/table3/result。原文 White t；本组 NW30 t。}
+\end{frame}
+
+% 7 — table 4
+\begin{frame}{Table 4｜公告窗口的机构关注效应未复现}
+\eyebrow{事件检验：未来第 2–6 日含 FOMC／非农／PPI 公告}
+\vspace{0.12cm}
+\small
+\renewcommand{\arraystretch}{1.1}
+\begin{tabular}{p{4.3cm}p{4.4cm}p{4.6cm}}
+\toprule
+\textbf{对照} & \textbf{原论文 \(\beta\)；White \(t\)} & \textbf{本组 \(\beta\)；NW30 \(t\)}\\
+\midrule
+\tealtxt{AIA｜有宏观公告} & \(2.076\)；\(3.20^{***}\) & 期权代理 \(0.280\)；\(1.21\) \\
+\tealtxt{AIA｜有减无} & \(2.451\)；\(2.78^{***}\) & 期权代理 \(0.071\)；\(0.22\) \\
+\redtxt{ARA｜有减无} & \(2.720\)；\(1.44\) & \(-2.655\)；\(-1.17\) \\
+\bottomrule
+\end{tabular}
+\vspace{0.18cm}
+\begin{beamercolorbox}[wd=\linewidth,sep=7pt,rounded=true]{retailcard}
+\textbf{读法：}本组 AIA 代理在公告日为正，但“有公告更强”的差异接近零，且不显著。\end{beamercolorbox}
+\vspace{0.07cm}
+{\small 公告日期已重建；缺少完整历史财报数据，因此没有复现 All News。}
+\source{原文：Table 4，PDF p.58；本组：program/table4/result。原文 White t；本组 NW30 t。}
+\end{frame}
+
+% 8 — limitations
+\begin{frame}{怎样解释“没有复现显著性”？}
+\eyebrow{先辨认口径差异，再判断证据强度}
+\vspace{0.06cm}
+\footnotesize
+\renewcommand{\arraystretch}{1.13}
+\begin{tabular}{p{3.2cm}p{4.8cm}p{5.3cm}}
+\toprule
+\textbf{环节} & \textbf{原论文} & \textbf{本组处理}\\
+\midrule
+注意力 & ARA: Google；AIA: Bloomberg 阅读 & ARA 原值；AIA 用期权成交量代理\\
+收益与样本 & CRSP 全市场；ARA 2004–19 & 标普 500 代理；共同期 2010–19\\
+控制与分组 & 含异常新闻量；价差、借贷费用 & 省略新闻量；后两项未检验\\
+推断 & NW／White／Hodrick & 表 3–4 补报 NW30；未估 Hodrick\\
+\bottomrule
+\end{tabular}
+\vspace{0.08cm}
+\begin{beamercolorbox}[wd=\linewidth,sep=7pt,rounded=true]{instcard}
+\textbf{结论边界：}当前结果只能评价“可得数据 + 代理指标 + 缩减规格”的证据，不能据此否定原论文。\end{beamercolorbox}
+\source{来源：本组复现包 README 与 program/table2–4/README。}
+\end{frame}
+
+% 9 — synthesis
+\begin{frame}{收束：论文逻辑清楚，复现证据有限}
+\eyebrow{三个可带走的判断}
+\vspace{0.12cm}
+\begin{beamercolorbox}[wd=\linewidth,sep=7pt,rounded=true]{retailcard}
+\textbf{01 \quad 散户：}原文支持“买盘压力后回落”；本组 ARA 为负，但证据不足。\end{beamercolorbox}
+\vspace{0.12cm}
+\begin{beamercolorbox}[wd=\linewidth,sep=7pt,rounded=true]{instcard}
+\textbf{02 \quad 机构：}原文正向预测集中在重要新闻前；本组代理没有稳健的窗口差异。\end{beamercolorbox}
+\vspace{0.12cm}
+\begin{beamercolorbox}[wd=\linewidth,sep=7pt,rounded=true]{neutralcard}
+\textbf{03 \quad 下一步：}补齐 Bloomberg AIA、全市场收益和新闻数据，再检验原规格。\end{beamercolorbox}
+\vspace{0.18cm}
+\centering{\large\bfseries \redtxt{谁在关注}与\tealtxt{何时关注}都重要。}
+\source{来源：原论文 Table 2–4 与本组部分复现；回归不构成因果检验。}
+\end{frame}
+\end{document}
